@@ -52,7 +52,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         self.tableView.separatorStyle = .None
         self.searchBar.delegate = self
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
