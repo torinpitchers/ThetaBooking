@@ -77,13 +77,13 @@ class APICall {
         guard let passString: String = password as String else {
             throw APIError.DictionaryError
         }
+        
         let loginString = NSString(format:"%@:%@", userString, passString)
         let loginData:NSData = loginString.dataUsingEncoding(NSUTF8StringEncoding)!
         let base64String = loginData.base64EncodedStringWithOptions([])
         let request = NSMutableURLRequest(URL: NSURL(string:"http://cortexapi.ddns.net:8080/api/authenticate")!)
         request.HTTPMethod = "POST"
-        request.setValue(base64String, forKey: "Authorization")
-        request.addValue(base64String, forHTTPHeaderField: "Authorization")
+        request.addValue("Basic \(base64String)", forHTTPHeaderField: "BasicAuth")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b7i-LR-0fF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b7i-LR-0fF">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -94,7 +95,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8PJ-TU-w5K" id="kRs-9b-HNB">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="103"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="103.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RRz-dY-I42">
@@ -172,25 +173,25 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Matt Copson," textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHF-Kn-24W">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Matt Copson," textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHF-Kn-24W">
                                 <rect key="frame" x="20" y="174" width="560" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Torin Pitchers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLd-Sx-XJm">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Torin Pitchers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CLd-Sx-XJm">
                                 <rect key="frame" x="20" y="218" width="560" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created At Coventry University" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wj1-PB-GxP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Created At Coventry University" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wj1-PB-GxP">
                                 <rect key="frame" x="20" y="320" width="560" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="uniLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xu5-2z-DRa">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="uniLogo" translatesAutoresizingMaskIntoConstraints="NO" id="xu5-2z-DRa">
                                 <rect key="frame" x="199" y="370" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="EyJ-LN-rWA">
@@ -383,7 +384,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="&quot;Mark Tyers&quot; or &quot;Swift, iOS...&quot;" id="TvM-s3-dml">
-                            <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                         </searchBar>
@@ -392,7 +393,7 @@
                                 <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JRR-7s-gHK" id="PAk-dV-0IJ">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -415,19 +416,20 @@
             <objects>
                 <tableViewController id="BX5-Zd-uFl" customClass="ProfileController" customModule="ThetaBooking" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="182" sectionHeaderHeight="28" sectionFooterHeight="28" id="shx-a4-tmo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="434"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" placeholder="&quot;Mark Tyers&quot; or &quot;Swift, iOS...&quot;" id="6h4-jq-Zzu">
-                            <rect key="frame" x="0.0" y="0.0" width="800" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                         </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileCell" rowHeight="182" id="tp2-0T-hob" customClass="ProfileCell" customModule="ThetaBooking" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="182"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tp2-0T-hob" id="DdZ-jb-bOa">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="181.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1517557_694662217223507_975559094_n" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
@@ -462,7 +464,7 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Mark Tyers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1a-ob-lHn">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mark Tyers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a1a-ob-lHn">
                                             <rect key="frame" x="191" y="13" width="158" height="26"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <color key="textColor" red="0.95686274510000002" green="0.99607843139999996" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -491,6 +493,11 @@
                                             <exclude reference="a1a-ob-lHn"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <exclude reference="bv4-ud-00Z"/>
+                                            <exclude reference="zUA-b3-VgQ"/>
+                                            <exclude reference="JyB-Re-8nR"/>
+                                            <exclude reference="gOv-P5-aJo"/>
+                                            <exclude reference="wOU-SD-be6"/>
                                             <exclude reference="76L-HH-smq"/>
                                             <exclude reference="QyX-km-p6a"/>
                                             <exclude reference="Xst-ai-oxC"/>
@@ -498,11 +505,6 @@
                                             <exclude reference="piw-L1-KuC"/>
                                             <exclude reference="sna-eG-F6i"/>
                                             <exclude reference="vdo-td-JnQ"/>
-                                            <exclude reference="bv4-ud-00Z"/>
-                                            <exclude reference="zUA-b3-VgQ"/>
-                                            <exclude reference="JyB-Re-8nR"/>
-                                            <exclude reference="gOv-P5-aJo"/>
-                                            <exclude reference="wOU-SD-be6"/>
                                         </mask>
                                     </variation>
                                     <variation key="widthClass=compact">
@@ -513,6 +515,11 @@
                                             <include reference="a1a-ob-lHn"/>
                                         </mask>
                                         <mask key="constraints">
+                                            <include reference="bv4-ud-00Z"/>
+                                            <include reference="zUA-b3-VgQ"/>
+                                            <include reference="JyB-Re-8nR"/>
+                                            <include reference="gOv-P5-aJo"/>
+                                            <include reference="wOU-SD-be6"/>
                                             <include reference="76L-HH-smq"/>
                                             <include reference="QyX-km-p6a"/>
                                             <include reference="Xst-ai-oxC"/>
@@ -520,11 +527,6 @@
                                             <include reference="piw-L1-KuC"/>
                                             <include reference="sna-eG-F6i"/>
                                             <include reference="vdo-td-JnQ"/>
-                                            <include reference="bv4-ud-00Z"/>
-                                            <include reference="zUA-b3-VgQ"/>
-                                            <include reference="JyB-Re-8nR"/>
-                                            <include reference="gOv-P5-aJo"/>
-                                            <include reference="wOU-SD-be6"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -563,7 +565,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="seq-qR-tPq" id="mMP-B3-mGP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
@@ -717,6 +719,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loginButton" destination="l6Y-W3-Srw" id="gSZ-Vs-KRT"/>
                         <outlet property="passwordField" destination="Lae-sI-JXc" id="laI-rv-JFd"/>
                         <outlet property="usernameField" destination="Bdz-1s-2Cf" id="nBn-lf-MPb"/>
                         <segue destination="fCH-jb-PVY" kind="show" identifier="loginToNav" id="RX1-WV-sNo"/>

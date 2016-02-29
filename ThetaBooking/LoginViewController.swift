@@ -1,7 +1,5 @@
-//
 //  LoginViewController.swift
 //  ThetaBooking
-//
 //  Created by Harry Moy on 18/01/2016.
 //  Copyright © 2016 Genesis. All rights reserved.
 
@@ -22,33 +20,113 @@ enum LAError : Int {
 class LoginViewController: UIViewController {
     
     let context:LAContext = LAContext()
-    
+    let defaults = NSUserDefaults.standardUserDefaults()
     
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var usernameField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    
+    let MyKeychainWrapper = KeychainWrapper()
+    let createLoginButtonTag = 0
+    let loginButtonTag = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
     
+    
     override func viewDidAppear(animated: Bool) {
-        self.authenticateUser()
+        userAlreadyExist()
     }
     
     override func didReceiveMemoryWarning() {0
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+   
+    // the complete login function
     @IBAction func login(sender: AnyObject) {
-        performSegueWithIdentifier("loginToNav", sender: self)
         
+        if (usernameField.text == "" || passwordField.text == "") {
+            let alertView = UIAlertController(title: "Login Problem",
+                message: "Please enter username and password." as String, preferredStyle:.Alert)
+            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+            alertView.addAction(okAction)
+            self.presentViewController(alertView, animated: true, completion: nil)
+            return;
+        }
+        if sender.tag == createLoginButtonTag {
+            do {
+                try APICall.authenticate(usernameField.text!, password: passwordField.text!)
+            } catch {
+                print("Error making API call")
+            }
+            let hasLoginKey = self.defaults.boolForKey("hasLoginKey")
+            if hasLoginKey == false {
+                self.defaults.setValue(self.usernameField.text, forKey: "username")
+            }
+            
+            self.defaults.setValue(self.usernameField.text, forKey: "username")
+            MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
+            MyKeychainWrapper.writeToKeychain()
+            self.defaults.setBool(true, forKey: "hasLoginKey")
+            self.defaults.synchronize()
+            loginButton.tag = loginButtonTag
+            performSegueWithIdentifier("loginToNav", sender: self)
+        
+        } else if sender.tag == loginButtonTag {
+            if checkLogin(usernameField.text!, password: passwordField.text!) {
+                performSegueWithIdentifier("loginToNav", sender: self)
+            } else {
+                print("not equal to NSUserDefaults")
+            }
+        }
     }
     
     
+    //if the user hits return on the keypad then the keyboard disappears
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        usernameField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        return true
+    }
+    
+    //if the user touches anywhere on the view, the keyboard disappears
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
+    //if user clicks "create an account" the segue is performed
     @IBAction func registerPressed(sender: UIButton) {
         performSegueWithIdentifier("loginToRegister", sender: self)
+    }
+    
+    func checkLogin(username: String, password: String ) -> Bool {
+            if password == MyKeychainWrapper.myObjectForKey("v_Data") as? String &&
+                username == self.defaults.valueForKey("username") as? String {
+                    return true
+            } else {
+                return false
+            }
+        }
+    
+    func userAlreadyExist() {
+        let hasAccount = self.defaults.boolForKey("hasLoginKey")
+        
+        if hasAccount {
+            print("test")
+            self.authenticateUser()
+        }
+        else {
+            print("nope")
+            //showRegistration()
+        }
+        
     }
     
     func authenticateUser() {
@@ -59,8 +137,11 @@ class LoginViewController: UIViewController {
                 
                 // If the Touch ID check is correct
                 if success {
-                    print("Success")
-                    //Load Data this way
+                    let retrieveKeyChain: String = self.MyKeychainWrapper.myObjectForKey("v_Data") as! String
+                    let retrieveUsername: String = self.defaults.objectForKey("username") as! String
+                    self.usernameField.text = retrieveUsername
+                    self.passwordField.text = retrieveKeyChain
+                    
                 }
                     // Displays which error has occurred in the console
                 else {
@@ -75,7 +156,7 @@ class LoginViewController: UIViewController {
                     default:
                         print("Error doing it")
                     }
-                    //self.showRegistration()
+                
                 }
             })]
         }
@@ -89,7 +170,7 @@ class LoginViewController: UIViewController {
             default:
                 print("There's some reason for it not working")
             }
-            //self.showRegistration()
+        
         }
     }
     
