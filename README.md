@@ -21,7 +21,7 @@ Trello: `https://trello.com/b/OxfvBr0A/genesis`
 
 Slack: `https://genesisvev.slack.com`
 
-API SLack:
+API Documentation: `https://gitlab.com/gbhopal/321COM`
 
 ###Team Members
 
