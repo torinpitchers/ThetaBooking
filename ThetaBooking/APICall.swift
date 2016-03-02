@@ -1,8 +1,9 @@
 //  APICall.swift
 //  ThetaBooking
 //
-//  Created by Matthew Copson on 26/01/2016.
-//  Copyright © 2016 Harry Moy. All rights reserved.
+//  Created by Harry Moy on 26/01/2016.
+//  Edited by Toring itchers on 02/03/2016
+//  Copyright © 2016 Genesis. All rights reserved.
 //
 
 import Foundation
@@ -82,8 +83,8 @@ class APICall {
         let base64String = loginData.base64EncodedStringWithOptions([])
         let request = NSMutableURLRequest(URL: NSURL(string:"http://cortexapi.ddns.net:8080/api/authenticate")!)
         request.HTTPMethod = "POST"
-        request.setValue(base64String, forKey: "Authorization")
-        request.addValue(base64String, forHTTPHeaderField: "Authorization")
+        //request.setValue(base64String, forKey: "Authorization")
+        request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
@@ -110,6 +111,40 @@ class APICall {
     }
     
     // <---------- User focused functions ----------->
+    
+    class func ResisterPerson(name: String, email: String, username: String, password: String, skills: [String], lecturer: Bool) throws {
+        let dictionary: NSDictionary = [
+            "name": name,
+            "email": email,
+            "username": username,
+            "password": password,
+            "skills": skills,
+            "lecturer": lecturer
+        ]
+        let json = try NSJSONSerialization.dataWithJSONObject(dictionary, options:[])
+        let request = NSMutableURLRequest(URL: NSURL(string:"http://cortexapi.ddns.net:8080/api/addNewPerson")!)
+        request.HTTPMethod = "POST"
+        request.HTTPBody = json
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session:NSURLSession = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler:{(data, response, error) -> Void in
+            do {
+                guard error == nil && data != nil else {
+                    return
+                }
+                if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 201 {
+                    print("statusCode should be 201, but is \(httpStatus.statusCode)")
+                    print("response = \(response)")
+                }
+                
+                let responseJson = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                print(responseJson)
+            } catch {
+                print("Error")
+            }
+        }).resume()
+    }
+    
     
     class func postPerson(name: String, email: String, username: String, password: String, skills: [String], lecturer: Bool) throws {
         let dictionary: NSDictionary = [
