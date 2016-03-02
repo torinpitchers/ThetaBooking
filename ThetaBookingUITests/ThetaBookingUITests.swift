@@ -28,9 +28,57 @@ class ThetaBookingUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testNavigation() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        
+        let app = XCUIApplication()
+        app.buttons["Create an account"].tap()
+        app.buttons["Cancel"].tap()
+        app.buttons["Login"].tap()
+        app.navigationBars["Student Homepage"].buttons["settings"].tap()
+        app.navigationBars["Settings"].buttons["Student Homepage"].tap()
+        
+        let tablesQuery2 = app.tables
+        let tablesQuery = tablesQuery2
+        tablesQuery.staticTexts["Search"].tap()
+        tablesQuery.staticTexts["Games, C++, AGILE, Web Technologies, Design."].tap()
+        // Failed to find matching element please file bug (bugreport.apple.com) and provide output from Console.app
+        
+        let markTyersOrSwiftIosSearchField = tablesQuery2.searchFields["\"Mark Tyers\" or \"Swift, iOS...\""]
+        markTyersOrSwiftIosSearchField.tap()
+        markTyersOrSwiftIosSearchField.typeText("ma")
+        
     }
+    
+    func testSearch() {
+        // Use recording to get started writing UI tests.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        
+        let app = XCUIApplication()
+        app.buttons["Login"].tap()
+        
+        let tablesQuery2 = app.tables
+        let tablesQuery = tablesQuery2
+        tablesQuery.staticTexts["Search"].tap()
+        tablesQuery.staticTexts["Games, C++, AGILE, Web Technologies, Design."].tap()
+        // Failed to find matching element please file bug (bugreport.apple.com) and provide output from Console.app
+        
+        let markTyersOrSwiftIosSearchField = tablesQuery2.searchFields["\"Mark Tyers\" or \"Swift, iOS...\""]
+        markTyersOrSwiftIosSearchField.tap()
+        markTyersOrSwiftIosSearchField.typeText("ma")
+        
+        tablesQuery.staticTexts["Mark Tyers"].exists
+        XCTAssertEqual(tablesQuery.staticTexts["Mark Tyers"].exists, true)
+        
+        
+        
+        
+        
+        
+    }
+
     
 }
