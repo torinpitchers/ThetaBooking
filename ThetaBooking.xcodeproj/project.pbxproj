@@ -13,7 +13,7 @@
 		11D7D2821C4D35000065E502 /* ThetaBooking.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D2801C4D35000065E502 /* ThetaBooking.xcdatamodeld */; };
 		11D7D2841C4D35000065E502 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11D7D2831C4D35000065E502 /* Assets.xcassets */; };
 		11D7D2871C4D35000065E502 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D7D2851C4D35000065E502 /* LaunchScreen.storyboard */; };
-		11D7D2921C4D35000065E502 /* ThetaBookingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D2911C4D35000065E502 /* ThetaBookingTests.swift */; };
+		11D7D2921C4D35000065E502 /* UsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D2911C4D35000065E502 /* UsersTests.swift */; };
 		11D7D29D1C4D35000065E502 /* ThetaBookingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D29C1C4D35000065E502 /* ThetaBookingUITests.swift */; };
 		34A1B82B1C6B8F1C00081C0B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A1B82A1C6B8F1C00081C0B /* HomeScreen.swift */; };
 		8F0D504F1C7CA211006163AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D504E1C7CA211006163AF /* User.swift */; };
@@ -54,7 +54,7 @@
 		11D7D2861C4D35000065E502 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11D7D2881C4D35000065E502 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11D7D28D1C4D35000065E502 /* ThetaBookingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThetaBookingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		11D7D2911C4D35000065E502 /* ThetaBookingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThetaBookingTests.swift; sourceTree = "<group>"; };
+		11D7D2911C4D35000065E502 /* UsersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTests.swift; sourceTree = "<group>"; };
 		11D7D2931C4D35000065E502 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11D7D2981C4D35000065E502 /* ThetaBookingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThetaBookingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D7D29C1C4D35000065E502 /* ThetaBookingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThetaBookingUITests.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 		11D7D2901C4D35000065E502 /* ThetaBookingTests */ = {
 			isa = PBXGroup;
 			children = (
-				11D7D2911C4D35000065E502 /* ThetaBookingTests.swift */,
+				11D7D2911C4D35000065E502 /* UsersTests.swift */,
 				11D7D2931C4D35000065E502 /* Info.plist */,
 			);
 			path = ThetaBookingTests;
@@ -310,7 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11D7D2921C4D35000065E502 /* ThetaBookingTests.swift in Sources */,
+				11D7D2921C4D35000065E502 /* UsersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

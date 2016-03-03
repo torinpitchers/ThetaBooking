@@ -3,7 +3,7 @@
 //  ThetaBooking
 //
 //  Created by Matthew Copson on 16/02/2016.
-//  Copyright © 2016 Harry Moy. All rights reserved.
+//  Copyright © 2016 Genesis. All rights reserved.
 //
 
 import Foundation

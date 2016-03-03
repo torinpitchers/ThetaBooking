@@ -263,7 +263,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="166"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1517557_694662217223507_975559094_n" translatesAutoresizingMaskIntoConstraints="NO" id="0vJ-ki-1bk">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0vJ-ki-1bk">
                                 <rect key="frame" x="16" y="8" width="146" height="146"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="ERh-IJ-2XT"/>
