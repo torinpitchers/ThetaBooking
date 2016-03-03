@@ -32,7 +32,12 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        do {
+            try APICall.authenticate("torinpitchers", password: "123")
+        }
+        catch {
+            print("error")
+        }
         
     }
     
