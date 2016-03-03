@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+enum UserError:ErrorType {
+    case IndexNotValid
+}
+
 struct User {
     var name: String //Searchable
     var email: String //Primary Key
@@ -21,12 +25,14 @@ struct User {
 class Users {
     
     private var UserList:[User]
+    var searchResults:[User]
     
     // static class public property that returns a Budget object
     static let getInstance = Users()
     
     init() {
         UserList = []
+        searchResults = []
     }
     
     
@@ -64,19 +70,49 @@ class Users {
         self.UserList.append(user1)
         self.UserList.append(user2)
         self.UserList.append(user3)
+        self.searchResults = UserList
     }
     
     func count() -> Int {
         return self.UserList.count
     }
     
-    func getUser(Index:Int) -> User {
+    func getUser(Index:Int) throws -> User {
+        if 0 > Index || Index > self.UserList.count - 1 {
+            throw UserError.IndexNotValid
+        }
+        
         return UserList[Index]
     }
     
     func getList() -> [User] {
         return UserList
     }
+    
+    
+    func search(text:String) {
+       
+        searchResults = [] //empty the search results container
+        let searchRange = Range(start: text.startIndex, end: text.endIndex) //calulate range of search
+        
+        for person in Users.getInstance.getList() {
+            if searchRange.count > person.name.characters.count {
+                continue
+            }
+            let substring = person.name.substringWithRange(searchRange) //get substring from range
+            if substring.lowercaseString == text.lowercaseString {
+                searchResults.append(person)
+                
+            }
+        }
+        print(searchResults.count)
+    }
+    
+    func clear() -> Void {
+        self.searchResults = []
+        self.UserList = []
+    }
+
     
     
     

@@ -122,10 +122,10 @@ class HomeScreenTable: UITableViewController {
             let text:String = label.text!
             
             if text == "Search"  {
-                performSegueWithIdentifier("homeToSearch", sender: self)
+                performSegueWithIdentifier("homeToProfile", sender: self)
             }
             else if text == "Profile"  {
-                performSegueWithIdentifier("homeToProfile", sender: self)
+                
             }
             else {
                 

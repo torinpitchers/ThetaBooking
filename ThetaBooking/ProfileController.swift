@@ -24,35 +24,17 @@ class ProfileCell:UITableViewCell{
 class ProfileController: UITableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
-    var searchResults:[User]  = Users.getInstance.getList()
+    
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    func search(text:String) {
-        searchResults = [] //empty the search results container
-        let searchRange = Range(start: text.startIndex, end: text.endIndex) //calulate range of search
-        
-        
-        for person in Users.getInstance.getList() {
-            if searchRange.count > person.name.characters.count {
-                continue
-            }
-            let substring = person.name.substringWithRange(searchRange) //get substring from range
-            if substring.lowercaseString == text.lowercaseString {
-                searchResults.append(person)
-                
-            }
-        }
-        tableView.reloadData()
-        print(searchResults.count)
-    }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = .None
         self.searchBar.delegate = self
-        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -107,7 +89,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ProfileCell = tableView.dequeueReusableCellWithIdentifier("ProfileCell", forIndexPath: indexPath) as! ProfileCell
-        if indexPath.section > searchResults.count - 1 {
+        if indexPath.section > Users.getInstance.searchResults.count - 1 {
           
             cell.hidden = true
             return cell
@@ -115,7 +97,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
         else {
            cell.hidden = false
         }
-        let user = searchResults[indexPath.section]
+        let user = Users.getInstance.searchResults[indexPath.section]
         if let nameLabel = cell.name {
             nameLabel.text = user.name
         }
@@ -145,7 +127,8 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        self.search(searchText)
+        Users.getInstance.search(searchText)
+        tableView.reloadData()
         
     }
     
