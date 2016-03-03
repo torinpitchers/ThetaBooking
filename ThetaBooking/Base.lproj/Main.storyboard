@@ -142,7 +142,8 @@
                     </tableView>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <segue destination="BX5-Zd-uFl" kind="show" identifier="homeToProfile" id="qZi-cD-5D9"/>
+                        <segue destination="BX5-Zd-uFl" kind="show" identifier="homeToSearch" id="qZi-cD-5D9"/>
+                        <segue destination="g1m-yP-Xwo" kind="show" identifier="homeToProfile" id="RWx-m0-gFm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zos-Df-Ry6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,11 +394,11 @@
                         <viewControllerLayoutGuide type="bottom" id="KBU-ND-Xmp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3hZ-Zg-etK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="434"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1517557_694662217223507_975559094_n" translatesAutoresizingMaskIntoConstraints="NO" id="f9x-FP-pfd">
-                                <rect key="frame" x="20" y="20" width="146" height="146"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="1517557_694662217223507_975559094_n" translatesAutoresizingMaskIntoConstraints="NO" id="f9x-FP-pfd">
+                                <rect key="frame" x="20" y="-469" width="146" height="605"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="146" id="6Xw-Au-RqD"/>
                                     <constraint firstAttribute="height" constant="150" id="o4D-nq-nDD"/>
@@ -410,8 +411,8 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4U-bj-fH2">
-                                <rect key="frame" x="203" y="34" width="377" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4U-bj-fH2">
+                                <rect key="frame" x="203" y="34" width="377" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="uiu-S9-SkD"/>
                                 </constraints>
@@ -419,14 +420,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jay-es-A2P">
-                                <rect key="frame" x="203" y="112" width="382" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jay-es-A2P">
+                                <rect key="frame" x="203" y="95" width="382" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Skills:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Y1-ym-xqP">
-                                <rect key="frame" x="20" y="399" width="382" height="37"/>
+                                <rect key="frame" x="20" y="233" width="382" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="nal-IN-LC3"/>
                                 </constraints>
@@ -434,8 +435,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Student Biography:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcf-fe-T59">
-                                <rect key="frame" x="20" y="239" width="382" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Student Biography:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bcf-fe-T59">
+                                <rect key="frame" x="20" y="209" width="382" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="382" id="6jf-Sm-K21"/>
                                     <constraint firstAttribute="height" constant="37" id="bAP-Ky-MBS"/>
@@ -445,6 +446,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <color key="backgroundColor" red="0.24313725489999999" green="0.52941176469999995" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="f9x-FP-pfd" firstAttribute="top" secondItem="MhZ-FM-QjH" secondAttribute="bottom" id="6Ln-WW-sfF"/>
                             <constraint firstItem="Bcf-fe-T59" firstAttribute="trailing" secondItem="8Y1-ym-xqP" secondAttribute="trailing" id="AIf-hU-Y3F"/>
@@ -492,7 +494,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="181.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="875C6D35-483A-4C7F-80A3-7E1D512CA387" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="E756D09E-3E1F-4BCD-BAE4-A2950FCE77CD" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
                                             <rect key="frame" x="16" y="8" width="146" height="146"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="SeA-Hs-c7Y"/>
@@ -968,7 +970,7 @@
     </scenes>
     <resources>
         <image name="1517557_694662217223507_975559094_n" width="623" height="605"/>
-        <image name="875C6D35-483A-4C7F-80A3-7E1D512CA387" width="300" height="300">
+        <image name="E756D09E-3E1F-4BCD-BAE4-A2950FCE77CD" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
