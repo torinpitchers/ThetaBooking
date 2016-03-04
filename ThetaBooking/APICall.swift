@@ -71,7 +71,7 @@ class APICall {
         }).resume()
     }
     
-    class func authenticate(username: String, password:String) throws {
+    class func authenticate(username: String, password:String) throws -> Bool{
         guard let userString: String = username as String else {
             throw APIError.DictionaryError
         }
@@ -88,6 +88,7 @@ class APICall {
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let session:NSURLSession = NSURLSession.sharedSession()
+        var success: Bool!
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
                 guard error == nil && data != nil else {
@@ -96,6 +97,10 @@ class APICall {
                 if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response = \(response)")
+                    success = false
+                }
+                else {
+                    success = true
                 }
                 
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
@@ -109,11 +114,13 @@ class APICall {
                 print("Error")
             }
         }).resume()
+        sleep(1)
+        return success
     }
     
     // <---------- User focused functions ----------->
     
-    class func ResisterPerson(name: String, email: String, username: String, password: String, skills: [String], lecturer: Bool) throws {
+    class func ResisterPerson(name: String, email: String, username: String, password: String, skills: [String], lecturer: Bool) throws -> String {
         let dictionary: NSDictionary = [
             "name": name,
             "email": email,
@@ -128,22 +135,50 @@ class APICall {
         request.HTTPBody = json
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let session:NSURLSession = NSURLSession.sharedSession()
+        var success: Bool!
+        var message: String?
         session.dataTaskWithRequest(request, completionHandler:{(data, response, error) -> Void in
             do {
                 guard error == nil && data != nil else {
+                    success = false
+                    message = "Failed - Unkown Error "
                     return
+                    
                 }
                 if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 201 {
                     print("statusCode should be 201, but is \(httpStatus.statusCode)")
                     print("response = \(response)")
+                    success = false
+                    message = "Failed - http response not good "
+                    
+                    if httpStatus.statusCode == 401 {
+                        success = false
+                        message = "Failed - Username taken, please choose another "
+                    }
+                    
+                }
+                else {
+                    success = true
+                    message = "success"
                 }
                 
                 let responseJson = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                
+                
                 print(responseJson)
+                
             } catch {
                 print("Error")
             }
         }).resume()
+        sleep(1)
+        if success == true {
+            return "success"
+        }
+        else {
+            return message!
+        }
+        
     }
     
     

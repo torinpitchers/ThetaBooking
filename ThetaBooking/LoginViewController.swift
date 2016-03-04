@@ -32,12 +32,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            try APICall.authenticate("torinpitchers", password: "123")
-        }
-        catch {
-            print("error")
-        }
+        
         
     }
     
@@ -63,12 +58,11 @@ class LoginViewController: UIViewController {
             self.presentViewController(alertView, animated: true, completion: nil)
             return;
         }
+        
+        
+        
         if sender.tag == createLoginButtonTag {
-            do {
-                try APICall.authenticate(usernameField.text!, password: passwordField.text!)
-            } catch {
-                print("Error making API call")
-            }
+            
             let hasLoginKey = self.defaults.boolForKey("hasLoginKey")
             if hasLoginKey == false {
                 self.defaults.setValue(self.usernameField.text, forKey: "username")
@@ -80,11 +74,33 @@ class LoginViewController: UIViewController {
             self.defaults.setBool(true, forKey: "hasLoginKey")
             self.defaults.synchronize()
             loginButton.tag = loginButtonTag
-            performSegueWithIdentifier("loginToNav", sender: self)
+            
+           
+            do {
+                let success = try APICall.authenticate(usernameField.text!, password: passwordField.text!)
+                
+                if success == true {
+                    performSegueWithIdentifier("loginToNav", sender: self)
+                }
+            } catch {
+                print("Error making API call")
+            }
+            
+            
+            
         
         } else if sender.tag == loginButtonTag {
             if checkLogin(usernameField.text!, password: passwordField.text!) {
-                performSegueWithIdentifier("loginToNav", sender: self)
+                
+                do {
+                    let success = try APICall.authenticate(usernameField.text!, password: passwordField.text!)
+                    
+                    if success == true {
+                        performSegueWithIdentifier("loginToNav", sender: self)
+                    }
+                } catch {
+                    print("Error making API call")
+                }
             } else {
                 print("not equal to NSUserDefaults")
             }

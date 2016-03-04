@@ -27,6 +27,10 @@ class RegisterVC: UIViewController, UITextFieldDelegate, UIAlertViewDelegate {
     @IBOutlet var passwordConfirmTextField: UITextField!
     
     
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    @IBOutlet weak var isLecturerSwitch: UISwitch!
+    
     
     @IBAction func cancelPressed(sender: AnyObject) {
         
@@ -85,9 +89,24 @@ class RegisterVC: UIViewController, UITextFieldDelegate, UIAlertViewDelegate {
             self.alert("Email not valid")
             return
         }
+        do{
+            let register = try APICall.ResisterPerson(nameTextField.text!, email: emailTextField.text!, username: emailTextField.text!, password: passwordTextField.text!, skills: [""], lecturer: isLecturerSwitch.on)
+            
+            print(register)
+            
+            
+            if register.containsString("success") == true {
+                self.performSegueWithIdentifier("registerToLogin", sender: self)
+            }
+            else if register.containsString("Failed") == true {
+                self.alert(register)
+            }
         
         
-
+        }
+        catch{
+            
+        }
     }
     
     //initialising the delegates
