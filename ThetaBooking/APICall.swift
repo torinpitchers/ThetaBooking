@@ -94,7 +94,7 @@ class APICall {
                 guard error == nil && data != nil else {
                     return
                 }
-                if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
+                if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 && httpStatus.statusCode != 201  {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response = \(response)")
                     success = false

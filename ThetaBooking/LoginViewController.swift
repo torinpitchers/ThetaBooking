@@ -46,6 +46,15 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func alert(message:String) {
+        let alert: UIAlertController = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let action:UIAlertAction = UIAlertAction(title: "Okay I'm Sorry", style: UIAlertActionStyle.Cancel, handler: nil)
+        alert.addAction(action)
+        presentViewController(alert, animated: true, completion: nil)
+    }
+
    
     // the complete login function
     @IBAction func login(sender: AnyObject) {
@@ -63,24 +72,34 @@ class LoginViewController: UIViewController {
         
         if sender.tag == createLoginButtonTag {
             
-            let hasLoginKey = self.defaults.boolForKey("hasLoginKey")
-            if hasLoginKey == false {
-                self.defaults.setValue(self.usernameField.text, forKey: "username")
-            }
             
-            self.defaults.setValue(self.usernameField.text, forKey: "username")
-            MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
-            MyKeychainWrapper.writeToKeychain()
-            self.defaults.setBool(true, forKey: "hasLoginKey")
-            self.defaults.synchronize()
-            loginButton.tag = loginButtonTag
             
            
             do {
                 let success = try APICall.authenticate(usernameField.text!, password: passwordField.text!)
                 
                 if success == true {
+                    print("got here")
+                    
+                    
+                    let hasLoginKey = self.defaults.boolForKey("hasLoginKey")
+                    if hasLoginKey == false {
+                        self.defaults.setValue(self.usernameField.text, forKey: "username")
+                    }
+                    
+                    self.defaults.setValue(self.usernameField.text, forKey: "username")
+                    MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
+                    MyKeychainWrapper.writeToKeychain()
+                    self.defaults.setBool(true, forKey: "hasLoginKey")
+                    self.defaults.synchronize()
+                    loginButton.tag = loginButtonTag
+                    
+                    
                     performSegueWithIdentifier("loginToNav", sender: self)
+                }
+                else {
+                    self.alert("Login Failed - Invalid Username or Password")
+                    
                 }
             } catch {
                 print("Error making API call")
