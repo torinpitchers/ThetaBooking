@@ -121,7 +121,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
             skillsLabel.text = text
         }
         if let imageView = cell.profileImage {
-            imageView.image = user.picture
+            imageView.image = UIImage(data: user.picture)
         }
         return cell
     }
