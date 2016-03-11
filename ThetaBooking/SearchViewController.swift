@@ -15,14 +15,10 @@ class TableViewController: UITableViewController, UISearchBarDelegate {
     var fetchedResults:[String] = ["mark tyers" , "reda" , "matthew copson"]
     var searchResults:[String]  = ["mark tyers" , "reda" , "matthew copson"]
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     override func viewDidLoad() {
-        
-        
-        
         super.viewDidLoad()
-        self.searchBar.delegate = self
         self.title = "Search"
         
         
