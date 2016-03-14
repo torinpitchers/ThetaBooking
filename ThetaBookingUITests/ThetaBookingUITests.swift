@@ -36,9 +36,29 @@ class ThetaBookingUITests: XCTestCase {
         let app = XCUIApplication()
         app.buttons["Create an account"].tap()
         app.buttons["Cancel"].tap()
+        
+       
+        
+        
+        
+        
+        let useYourUniversityEmailTextField = app.textFields["Use your university email"]
+        useYourUniversityEmailTextField.tap()
+        useYourUniversityEmailTextField.typeText("torinpitchers")
+        
+        let doNotShareWithAnyoneSecureTextField = app.secureTextFields["Do not share with anyone"]
+        doNotShareWithAnyoneSecureTextField.tap()
+        doNotShareWithAnyoneSecureTextField.tap()
+        doNotShareWithAnyoneSecureTextField.typeText("123")
         app.buttons["Login"].tap()
-        app.navigationBars["Student Homepage"].buttons["settings"].tap()
-        app.navigationBars["Settings"].buttons["Student Homepage"].tap()
+        
+        
+        
+        
+        
+        
+        app.navigationBars["Home"].buttons["settings"].tap()
+        app.navigationBars["Settings"].buttons["Home"].tap()
         
         let tablesQuery2 = app.tables
         let tablesQuery = tablesQuery2
@@ -58,6 +78,14 @@ class ThetaBookingUITests: XCTestCase {
         
         
         let app = XCUIApplication()
+        let useYourUniversityEmailTextField = app.textFields["Use your university email"]
+        useYourUniversityEmailTextField.tap()
+        useYourUniversityEmailTextField.typeText("torinpitchers")
+        
+        let doNotShareWithAnyoneSecureTextField = app.secureTextFields["Do not share with anyone"]
+        doNotShareWithAnyoneSecureTextField.tap()
+        doNotShareWithAnyoneSecureTextField.tap()
+        doNotShareWithAnyoneSecureTextField.typeText("123")
         app.buttons["Login"].tap()
         
         let tablesQuery2 = app.tables

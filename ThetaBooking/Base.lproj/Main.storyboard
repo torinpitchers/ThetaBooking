@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b7i-LR-0fF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1605" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="b7i-LR-0fF">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -101,7 +101,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8PJ-TU-w5K" id="kRs-9b-HNB">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="103.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="103"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RRz-dY-I42">
@@ -405,10 +405,10 @@
                                 <rect key="frame" x="0.0" y="72" width="600" height="182"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tp2-0T-hob" id="DdZ-jb-bOa">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="181.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="181"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="33C088AB-E958-41E7-9DF9-A8FE24F76D39" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="682B838A-370D-4085-966D-BA77F7EA02AD" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
                                             <rect key="frame" x="16" y="8" width="146" height="146"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="SeA-Hs-c7Y"/>
@@ -542,7 +542,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="seq-qR-tPq" id="mMP-B3-mGP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" red="0.054901960780000002" green="0.41176470590000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </tableViewCellContentView>
@@ -580,7 +580,7 @@
                                     <constraint firstAttribute="height" constant="30" id="HVC-ES-3gj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
                                     <rect key="frame" x="194" y="132" width="213" height="7"/>
                                 </variation>
@@ -621,7 +621,7 @@
                                     <constraint firstAttribute="height" constant="30" id="8ll-HR-cMp"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                                 <variation key="heightClass=compact" ambiguous="YES">
                                     <rect key="frame" x="194" y="178" width="213" height="0.0"/>
                                 </variation>
@@ -890,10 +890,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="33C088AB-E958-41E7-9DF9-A8FE24F76D39" width="300" height="300">
+        <image name="682B838A-370D-4085-966D-BA77F7EA02AD" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
-YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
-GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
+YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
+GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
 DBIAwAAAgAKACtISCRMVWk5TLm9iamVjdHOhFIADgAnSEgkXGqIYGYAEgAWACBAA0h0JHh9fEBROU1RJ
 RkZSZXByZXNlbnRhdGlvboAGgAdPEgAEK8ZNTQAqAAQeuPHx+fHx+fLy+vLy+vHx+fLx9/Lx9/Lx9/Ly
 +vLy+vLx+fLx+fLx+fLx+fLy+vLy+vLx+fLx+fLx+fHw+PLx+fLx+fLx+fLx+fLx9/Lx9/Lx9/Py+PPy
@@ -5452,14 +5452,14 @@ zDXMtc01zbXONs62zzfPuNA50LrRPNG+0j/SwdNE08bUSdTL1U7V0dZV1tjXXNfg2GTY6Nls2fHadtr7
 24DcBdyK3RDdlt4c3qLfKd+v4DbgveFE4cziU+Lb42Pj6+Rz5PzlhOYN5pbnH+ep6DLovOlG6dDqW+rl
 63Dr++yG7RHtnO4o7rTvQO/M8Fjw5fFy8f/yjPMZ86f0NPTC9VD13vZt9vv3ivgZ+Kj5OPnH+lf65/t3
 /Af8mP0p/br+S/7c/23//9IiIyQlWiRjbGFzc25hbWVYJGNsYXNzZXNfEBBOU0JpdG1hcEltYWdlUmVw
-oyQmJ1pOU0ltYWdlUmVwWE5TT2JqZWN00iIjKSpXTlNBcnJheaIpJ9IiIywtXk5TTXV0YWJsZUFycmF5
-oywpJ9MvMAkxMjNXTlNXaGl0ZVxOU0NvbG9yU3BhY2VEMCAwABADgAvSIiM1NldOU0NvbG9yojUn0iIj
-ODlXTlNJbWFnZaI4J18QD05TS2V5ZWRBcmNoaXZlctE8PVRyb290gAEAAAAIAAAAEQAAABoAAAAjAAAA
-LQAAADIAAAA3AAAARQAAAEsAAABUAAAAWwAAAGgAAABvAAAAdwAAAHkAAAB+AAAAgAAAAIIAAACHAAAA
-kgAAAJQAAACWAAAAmAAAAJ0AAACgAAAAogAAAKQAAACmAAAAqAAAAK0AAADEAAAAxgAAAMgABCyUAAQs
-mQAELKQABCytAAQswAAELMQABCzPAAQs2AAELN0ABCzlAAQs6AAELO0ABCz8AAQtAAAELQcABC0PAAQt
-HAAELSEABC0jAAQtJQAELSoABC0yAAQtNQAELToABC1CAAQtRQAELVcABC1aAAQtXwAAAAAAAAQBAAAA
-AAAAAD4AAAAAAAAAAAAAAAAABC1hA
+oyYnKF8QEE5TQml0bWFwSW1hZ2VSZXBaTlNJbWFnZVJlcFhOU09iamVjdNIiIyorV05TQXJyYXmiKijS
+IiMtLl5OU011dGFibGVBcnJheaMtKijTMDEJMjM0V05TV2hpdGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL
+0iIjNjdXTlNDb2xvcqI2KNIiIzk6V05TSW1hZ2WiOShfEA9OU0tleWVkQXJjaGl2ZXLRPT5Ucm9vdIAB
+AAAACAAAABEAAAAaAAAAIwAAAC0AAAAyAAAANwAAAEUAAABLAAAAVAAAAFsAAABoAAAAbwAAAHcAAAB5
+AAAAfgAAAIAAAACCAAAAhwAAAJIAAACUAAAAlgAAAJgAAACdAAAAoAAAAKIAAACkAAAApgAAAKgAAACt
+AAAAxAAAAMYAAADIAAQslAAELJkABCykAAQsrQAELMAABCzEAAQs1wAELOIABCzrAAQs8AAELPgABCz7
+AAQtAAAELQ8ABC0TAAQtGgAELSIABC0vAAQtNAAELTYABC04AAQtPQAELUUABC1IAAQtTQAELVUABC1Y
+AAQtagAELW0ABC1yAAAAAAAABAEAAAAAAAAAPwAAAAAAAAAAAAAAAAAELXQ
 </mutableData>
         </image>
         <image name="settings" width="32" height="32"/>
