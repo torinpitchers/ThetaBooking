@@ -28,12 +28,46 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
+    private var users:[User] = []
+    private var searchResults:[User] = []
     
+    func search(text:String) {
+        
+        self.searchResults = [] //empty the search results container
+        let searchRange = Range(start: text.startIndex, end: text.endIndex) //calulate range of search
+        
+        for person in users {
+            if searchRange.count > person.name.characters.count {
+                continue
+            }
+             //get substring from range
+            if person.name.lowercaseString.containsString(text.lowercaseString) == true {
+                self.searchResults.append(person)
+                
+            }
+        }
+        print(searchResults.count)
+    }
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        do{
+            dispatch_async(dispatch_get_main_queue(), {
+                try! APICall.AllLecturers { (userlist: [User]) -> () in
+                    self.users = userlist
+                    self.searchResults = self.users
+                    super.viewDidLoad()
+                    
+                    self.searchBar.delegate = self
+                    print(self.searchResults.count)
+                    self.tableView.reloadData()
+
+                }})
+        }
+        catch{
+            
+        }
         self.tableView.separatorStyle = .None
-        self.searchBar.delegate = self
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -42,6 +76,9 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         }
+    
+
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,7 +91,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return Users.getInstance.count()
+        return self.users.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -73,7 +110,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView:UIView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 15))
         
-        if section < Users.getInstance.count() {
+        if section < self.users.count {
             headerView.backgroundColor = UIColor.clearColor()
             //headerView.tintColor = UIColor.clearColor()
             
@@ -89,7 +126,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ProfileCell = tableView.dequeueReusableCellWithIdentifier("ProfileCell", forIndexPath: indexPath) as! ProfileCell
-        if indexPath.section > Users.getInstance.searchResults.count - 1 {
+        if indexPath.section > self.searchResults.count - 1 {
           
             cell.hidden = true
             return cell
@@ -97,7 +134,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
         else {
            cell.hidden = false
         }
-        let user = Users.getInstance.searchResults[indexPath.section]
+        let user:User = self.searchResults[indexPath.section]
         if let nameLabel = cell.name {
             nameLabel.text = user.name
         }
@@ -121,13 +158,13 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
             skillsLabel.text = text
         }
         if let imageView = cell.profileImage {
-            imageView.image = user.picture
+            imageView.image = UIImage(data: user.picture)
         }
         return cell
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        Users.getInstance.search(searchText)
+        self.search(searchText)
         tableView.reloadData()
         
     }

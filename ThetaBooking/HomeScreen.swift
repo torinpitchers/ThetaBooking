@@ -59,10 +59,11 @@ class HomeScreenTable: UITableViewController {
     override func viewDidLoad() {
     super.viewDidLoad()
         self.tableView.separatorStyle = .None
-        Users.getInstance.load()
-            
+        
         
 }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

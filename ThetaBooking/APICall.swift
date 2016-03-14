@@ -257,6 +257,42 @@ class APICall {
         }).resume()
     }
     
+    
+    class func AllLecturers(completion: ([User]) -> ()) throws {
+        let url:NSURL = NSURL(string: "http://cortexapi.ddns.net:8080/api/getAllLecturer")!
+        let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        var userlist:[User] = []
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session:NSURLSession = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard error == nil && data != nil else {
+                    return
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                
+                let dataobjects: AnyObject = json["data"] as AnyObject!
+                
+                for (var i:Int = 0; i<dataobjects.count; i++) {
+                    let name:String = dataobjects[i]["name"] as! String
+                    let email:String = dataobjects[i]["email"] as! String
+                    
+                    let user:User = User(name: name, email: email, staff: true, skills: [], bio: "", picture: NSData())
+                    
+                    userlist.append(user)
+                }
+                
+                
+                
+            } catch {
+                print("Error")
+            }
+            completion(userlist)
+        }).resume()
+    }
+    
+    
     class func searchForLecturer(email:String, completion: ([User]) -> ()) throws {
         guard let emailForRequest:String = email as String else {
             throw APIError.ResponseError
