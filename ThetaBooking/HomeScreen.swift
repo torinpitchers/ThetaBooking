@@ -128,7 +128,7 @@ class HomeScreenTable: UITableViewController {
                  performSegueWithIdentifier("HomeToProfile", sender: self)
             }
             else if text == "Bookings"{
-                performSegueWithIdentifier("HomeToAppointments", sender: self)
+                performSegueWithIdentifier("HomeToBookings", sender: self)
             }
             
         }

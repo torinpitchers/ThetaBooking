@@ -145,6 +145,7 @@
                         <segue destination="BX5-Zd-uFl" kind="show" identifier="homeToSearch" id="qZi-cD-5D9"/>
                         <segue destination="V7D-Ss-O1K" kind="show" identifier="HomeToAppointments" id="1dp-84-1Rj"/>
                         <segue destination="Nhf-SJ-ysp" kind="show" identifier="HomeToProfile" id="oTB-qS-6ZW"/>
+                        <segue destination="7Lf-iX-2V7" kind="show" identifier="HomeToBookings" id="e8Z-Es-ZVj"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zos-Df-Ry6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -296,6 +297,105 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTV-h8-XZb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="267" y="1533"/>
+        </scene>
+        <!--Bookings-->
+        <scene sceneID="t19-n2-U5R">
+            <objects>
+                <tableViewController title="Bookings" id="7Lf-iX-2V7" customClass="BookingsViewController" customModule="ThetaBooking" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" sectionHeaderHeight="28" sectionFooterHeight="28" id="d4o-8d-ifq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="434"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookingCustomCell" rowHeight="180" id="piQ-x7-luL" customClass="BookingCustomCell" customModule="ThetaBooking" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="180"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="piQ-x7-luL" id="xiJ-24-FiU">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="179.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Sa-bx-pMy">
+                                            <rect key="frame" x="10" y="10" width="38" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFL-oR-cQV">
+                                            <rect key="frame" x="10" y="40" width="481.5" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Attendees" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnZ-S5-bpH">
+                                            <rect key="frame" x="98" y="10" width="492" height="50.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="ltK-oN-2NV"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vi-C6-CIW">
+                                            <rect key="frame" x="10" y="100" width="580" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zbO-Js-3nK">
+                                            <rect key="frame" x="10" y="131" width="580" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2U-ST-U1E">
+                                            <rect key="frame" x="10" y="71" width="580" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="CFL-oR-cQV" firstAttribute="leading" secondItem="xiJ-24-FiU" secondAttribute="leading" constant="10" id="0lI-ju-ZgD"/>
+                                        <constraint firstItem="zbO-Js-3nK" firstAttribute="leading" secondItem="xiJ-24-FiU" secondAttribute="leading" constant="10" id="1cE-RQ-LaX"/>
+                                        <constraint firstAttribute="trailing" secondItem="0vi-C6-CIW" secondAttribute="trailing" constant="10" id="Ied-tu-GqE"/>
+                                        <constraint firstItem="zbO-Js-3nK" firstAttribute="top" secondItem="0vi-C6-CIW" secondAttribute="bottom" constant="10" id="RJC-ws-zEW"/>
+                                        <constraint firstAttribute="trailing" secondItem="zbO-Js-3nK" secondAttribute="trailing" constant="10" id="U4D-Lj-5WP"/>
+                                        <constraint firstItem="a2U-ST-U1E" firstAttribute="leading" secondItem="xiJ-24-FiU" secondAttribute="leading" constant="10" id="Wi7-rX-iB3"/>
+                                        <constraint firstItem="CFL-oR-cQV" firstAttribute="top" secondItem="6Sa-bx-pMy" secondAttribute="bottom" constant="10" id="XMf-Tb-WGr"/>
+                                        <constraint firstItem="0vi-C6-CIW" firstAttribute="top" secondItem="a2U-ST-U1E" secondAttribute="bottom" constant="10" id="XSh-Rp-vQc"/>
+                                        <constraint firstItem="MnZ-S5-bpH" firstAttribute="leading" secondItem="CFL-oR-cQV" secondAttribute="trailing" constant="50" id="Z38-vQ-qWF"/>
+                                        <constraint firstItem="6Sa-bx-pMy" firstAttribute="top" secondItem="xiJ-24-FiU" secondAttribute="top" constant="10" id="ekr-If-c0A"/>
+                                        <constraint firstItem="a2U-ST-U1E" firstAttribute="top" secondItem="MnZ-S5-bpH" secondAttribute="bottom" constant="10" id="gU4-I2-Isq"/>
+                                        <constraint firstAttribute="trailing" secondItem="MnZ-S5-bpH" secondAttribute="trailing" constant="10" id="jaF-ML-hdP"/>
+                                        <constraint firstItem="6Sa-bx-pMy" firstAttribute="leading" secondItem="xiJ-24-FiU" secondAttribute="leading" constant="10" id="leL-iN-NVq"/>
+                                        <constraint firstAttribute="trailing" secondItem="a2U-ST-U1E" secondAttribute="trailing" constant="10" id="lgj-lK-rui"/>
+                                        <constraint firstItem="MnZ-S5-bpH" firstAttribute="top" secondItem="xiJ-24-FiU" secondAttribute="top" constant="10" id="qjk-hJ-9an"/>
+                                        <constraint firstItem="MnZ-S5-bpH" firstAttribute="leading" secondItem="CFL-oR-cQV" secondAttribute="trailing" constant="10" id="rpd-De-b5K"/>
+                                        <constraint firstItem="0vi-C6-CIW" firstAttribute="leading" secondItem="xiJ-24-FiU" secondAttribute="leading" constant="10" id="xFI-bl-YHo"/>
+                                    </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="rpd-De-b5K"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="Attendees" destination="MnZ-S5-bpH" id="MRH-AD-XEa"/>
+                                    <outlet property="endTime" destination="CFL-oR-cQV" id="yEV-kZ-Vf6"/>
+                                    <outlet property="hideMe" destination="a2U-ST-U1E" id="bcw-5a-XS3"/>
+                                    <outlet property="startTime" destination="6Sa-bx-pMy" id="nfq-n1-Lgh"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7Lf-iX-2V7" id="jh1-qj-1WL"/>
+                            <outlet property="delegate" destination="7Lf-iX-2V7" id="28z-qJ-MS3"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CNe-o8-H2Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="906" y="1694"/>
         </scene>
         <!--About-->
         <scene sceneID="rqi-j3-eHe">
@@ -556,7 +656,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="181.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="52AD94A2-5CD0-49B0-AEDE-684156181B3B" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="B2F4CE33-1861-4183-9B4D-CCD2B44E19EA" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
                                             <rect key="frame" x="16" y="8" width="146" height="146"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="SeA-Hs-c7Y"/>
@@ -1113,7 +1213,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="52AD94A2-5CD0-49B0-AEDE-684156181B3B" width="300" height="300">
+        <image name="B2F4CE33-1861-4183-9B4D-CCD2B44E19EA" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
