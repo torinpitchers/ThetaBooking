@@ -41,6 +41,17 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        
+        let jack:User = User(name: "jack turriff", email: "jackturriff@gamil.com", staff: false, skills: [], bio: "", picture: NSData())
+        
+        
+        
+        do{
+            try APICall.deleteUser("jackturriff@gmail.com", password: "123")
+        } catch {}
+
+        
+        
         }
     
     override func didReceiveMemoryWarning() {
