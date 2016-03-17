@@ -11,9 +11,8 @@ import UIKit
 class editProfile: UIViewController {
     
     @IBAction func saveProfileChanges(sender: AnyObject) {
-        
-        performSegueWithIdentifier("ChangesToProfile", sender: nil)
-        
+    
+        self.performSegueWithIdentifier("ChangesToProfile", sender: self)
         }
     
 override func viewDidLoad() {
