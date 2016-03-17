@@ -37,7 +37,6 @@ class HomeScreenController: UIViewController {
     
     @IBAction func SettingsTapped(sender: UIBarButtonItem) {
         performSegueWithIdentifier("homeToSettings", sender: self)
-        
     }
     
     
@@ -60,7 +59,7 @@ class HomeScreenTable: UITableViewController {
     super.viewDidLoad()
         self.tableView.separatorStyle = .None
         Users.getInstance.load()
-        
+        self.tableView.scrollEnabled = false
             
         
 }
@@ -78,7 +77,7 @@ class HomeScreenTable: UITableViewController {
         return 1
 }
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15.0
+        return 0
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -144,7 +143,8 @@ class HomeScreenSettings: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.separatorStyle = .None
+        self.tableView.separatorStyle = .SingleLine
+        self.tableView.separatorColor = UIColor.whiteColor()
         
         
     }
@@ -162,15 +162,7 @@ class HomeScreenSettings: UITableViewController {
         
         if let label = cell.textLabel {
             label.text = settingList[indexPath.row]
-            
-            if label.text == "Logout" {
-                label.textColor =  UIColor.redColor().colorWithAlphaComponent(0.8)
-                label.font = UIFont.boldSystemFontOfSize(20)
-            }
-            else {
-                label.textColor =  UIColor(red: 0xFF / 255.0, green: 0xCC / 255.0, blue: 0x00 / 255.0, alpha: 0.8)
-            }
-            
+        
             
             
             

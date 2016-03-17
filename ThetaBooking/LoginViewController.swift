@@ -94,8 +94,9 @@ class LoginViewController: UIViewController {
                     self.defaults.synchronize()
                     loginButton.tag = loginButtonTag
                     
-                    
-                    performSegueWithIdentifier("loginToNav", sender: self)
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.performSegueWithIdentifier("loginToNav", sender: self)
+                    })
                 }
                 else {
                     self.alert("Login Failed - Invalid Username or Password")
@@ -178,10 +179,12 @@ class LoginViewController: UIViewController {
                 
                 // If the Touch ID check is correct
                 if success {
-                    let retrieveKeyChain: String = self.MyKeychainWrapper.myObjectForKey("v_Data") as! String
-                    let retrieveUsername: String = self.defaults.objectForKey("username") as! String
-                    self.usernameField.text = retrieveUsername
-                    self.passwordField.text = retrieveKeyChain
+                    dispatch_async(dispatch_get_main_queue(), {
+                        let retrieveKeyChain: String = self.MyKeychainWrapper.myObjectForKey("v_Data") as! String
+                        let retrieveUsername: String = self.defaults.objectForKey("username") as! String
+                        self.usernameField.text = retrieveUsername
+                        self.passwordField.text = retrieveKeyChain
+                    })
                     
                 }
                     // Displays which error has occurred in the console
