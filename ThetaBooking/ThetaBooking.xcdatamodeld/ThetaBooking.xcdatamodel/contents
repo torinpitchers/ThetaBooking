@@ -3,12 +3,13 @@
     <entity name="Booking" syncable="YES">
         <attribute name="accepted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="end" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="length" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="staff" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="start" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="student" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Booking" positionX="-63" positionY="-18" width="128" height="135"/>
+        <element name="Booking" positionX="-63" positionY="-18" width="128" height="150"/>
     </elements>
 </model>

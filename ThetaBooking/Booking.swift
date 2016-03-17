@@ -14,5 +14,6 @@ struct Booking {
     var date: String
     var staff: String
     var student: String
-    var length: Int
+    var start: String
+    var end: String
 }

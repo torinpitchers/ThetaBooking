@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import CoreData
+import UIKit
 
 enum APIError: ErrorType {
     case ResponseError
@@ -336,11 +338,31 @@ class APICall {
                 if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
                     print("response = \(response)")
+                saveBooking(dateString, participants: participantsList, start: startString, end: endString)
                 }
             } catch {
                 print("Error")
             }
         }).resume()
     }
-    
 }
+
+    func saveBooking(date:String, participants:[String], start:String, end:String) {
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext
+        let entity = NSEntityDescription.entityForName("Booking", inManagedObjectContext: managedContext)
+        let newBooking = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
+        newBooking.setValue(1, forKey: "id")
+        newBooking.setValue(date, forKey: "date")
+        newBooking.setValue(participants[0], forKey: "student")
+        newBooking.setValue(participants[1], forKey: "staff")
+        newBooking.setValue(true, forKey: "bookable")
+        newBooking.setValue(start, forKey: "start")
+        newBooking.setValue(end, forKey: "end")
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("An error occurred \(error.userInfo)")
+        }
+        
+    }
