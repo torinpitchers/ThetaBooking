@@ -8,17 +8,41 @@
 
 import Foundation
 import UIKit
+import CoreData
 
-class BookingsViewController: UITableViewController {
+class BookingsViewController: UITableViewController, NSFetchedResultsControllerDelegate{
     
-    
-    
-    
+    var fetchedResults: NSFetchedResultsController?
+    var managedObjectContext: NSManagedObjectContext?
     let items:[menuItem] = [item1,item2,item3]
-
-    
     var selectedIndexPath: NSIndexPath? = nil
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        self.managedObjectContext = appDelegate.managedObjectContext
+    }
     
+    override func viewDidAppear(animated: Bool) {
+        self.getBookings()
+    }
+    
+    func getBookings() {
+        let entity = NSEntityDescription.entityForName("Booking", inManagedObjectContext: self.managedObjectContext!)
+        let sortDate = NSSortDescriptor(key: "date", ascending: true)
+        let req = NSFetchRequest()
+        req.entity = entity
+        req.sortDescriptors = [sortDate]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: req, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: "date", cacheName: nil)
+        fetchedResultsController.delegate = self
+        self.fetchedResults = fetchedResultsController
+        do {
+            try self.fetchedResults?.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("Error fetching results")
+        }
+    }
     
     override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
         return 1
