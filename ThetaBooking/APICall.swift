@@ -12,7 +12,10 @@ import UIKit
 enum APIError: ErrorType {
     case ResponseError
     case DictionaryError
+    case DefaultsError
 }
+
+let defaults = NSUserDefaults.standardUserDefaults()
 
 protocol APICallProtocol {
     func getThetaCalendar() throws
@@ -317,6 +320,73 @@ class APICall {
                 }
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 print(json)
+            } catch {
+                print("Error")
+            }
+        }).resume()
+    }
+    
+    class func getAllLocations() throws {
+        var locationList = [String]()
+        let urlString = "http://cortexapi.ddns.net:8080/api/getAllLocations"
+        let url: NSURL = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "GET"
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                print(json)
+                let _: AnyObject = json["data"] as AnyObject!
+                
+            } catch {
+                print("Error getting locations")
+            }
+        })
+    }
+    
+    class func postAvailability(name: String, startTime:String, stopTime:String, date:String, username:String) throws {
+        guard let username = defaults.objectForKey("username") as? String else {
+            throw APIError.DefaultsError
+        }
+        guard let token = defaults.objectForKey("token") as? String else {
+            throw APIError.DefaultsError
+        }
+        let dictionary: NSDictionary = [
+            "name": name,
+            "timeStart": startTime,
+            "timeStop": stopTime,
+            "date":date,
+            "notes":"",
+            "recurringWeekly": false,
+            "bookable": true,
+            "username": username
+        ]
+        let json = try NSJSONSerialization.dataWithJSONObject(dictionary, options:[])
+        let urlString = "http://cortexapi.ddns.net:8080/api/addNewAvailability"
+        let url:NSURL = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPBody = json
+        request.HTTPMethod = "POST"
+        request.addValue(token, forHTTPHeaderField: "token")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard error == nil && data != nil else {
+                    return
+                }
+                if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(response)")
+                }
+                
+                let responseJson = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                print(responseJson)
             } catch {
                 print("Error")
             }
