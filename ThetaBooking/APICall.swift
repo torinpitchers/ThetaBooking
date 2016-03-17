@@ -327,7 +327,7 @@ class APICall {
     }
     
     class func getAllLocations() throws {
-        var locationList = [String]()
+        _ = [String]()
         let urlString = "http://cortexapi.ddns.net:8080/api/getAllLocations"
         let url: NSURL = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
@@ -431,9 +431,9 @@ class APICall {
         guard let participantsList:[String] = participants as [String] else {
             throw APIError.DictionaryError
         }
-        guard let bookableString:String = bookable as String else {
-            throw APIError.DictionaryError
-        }
+//        guard let bookableString:String = bookable as String else {
+//            throw APIError.DictionaryError
+//        }
         guard let locationString:String = location as String else {
             throw APIError.DictionaryError
         }
@@ -451,7 +451,7 @@ class APICall {
             "endTime": endString,
             "date": dateString,
             "participants": participantsList,
-            "bookable": bookableString,
+            "bookable": true,
             "location": locationString,
             "reoccurance": reoccuranceString,
             "title": titleString,
@@ -467,7 +467,7 @@ class APICall {
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
                 guard error == nil && data != nil else {
-                    return
+                    throw APIError.ResponseError
                 }
                 if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
