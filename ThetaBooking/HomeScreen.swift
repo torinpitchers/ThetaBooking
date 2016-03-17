@@ -60,6 +60,7 @@ class HomeScreenTable: UITableViewController {
     super.viewDidLoad()
         self.tableView.separatorStyle = .None
         Users.getInstance.load()
+        
             
         
 }
@@ -128,7 +129,7 @@ class HomeScreenTable: UITableViewController {
                  performSegueWithIdentifier("HomeToProfile", sender: self)
             }
             else if text == "Bookings"{
-                performSegueWithIdentifier("HomeToAppointments", sender: self)
+                
             }
             
         }

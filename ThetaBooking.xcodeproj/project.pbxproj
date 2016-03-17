@@ -16,6 +16,8 @@
 		11D7D2921C4D35000065E502 /* UsersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D2911C4D35000065E502 /* UsersTests.swift */; };
 		11D7D29D1C4D35000065E502 /* ThetaBookingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D7D29C1C4D35000065E502 /* ThetaBookingUITests.swift */; };
 		34A1B82B1C6B8F1C00081C0B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A1B82A1C6B8F1C00081C0B /* HomeScreen.swift */; };
+		34F2368A1C9B00AE00EA35E4 /* myprofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F236891C9B00AE00EA35E4 /* myprofile.swift */; };
+		34F2368C1C9B1EE800EA35E4 /* editProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34F2368B1C9B1EE800EA35E4 /* editProfile.swift */; };
 		8F0D504F1C7CA211006163AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D504E1C7CA211006163AF /* User.swift */; };
 		8F315CC61C7DF86200733B3D /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F315CC51C7DF86200733B3D /* APICall.swift */; };
 		8F315CC81C7DF88600733B3D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F315CC71C7DF88600733B3D /* Date.swift */; };
@@ -61,6 +63,8 @@
 		11D7D29C1C4D35000065E502 /* ThetaBookingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThetaBookingUITests.swift; sourceTree = "<group>"; };
 		11D7D29E1C4D35000065E502 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		34A1B82A1C6B8F1C00081C0B /* HomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		34F236891C9B00AE00EA35E4 /* myprofile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myprofile.swift; sourceTree = "<group>"; };
+		34F2368B1C9B1EE800EA35E4 /* editProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = editProfile.swift; sourceTree = "<group>"; };
 		8F0D504E1C7CA211006163AF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8F315CC51C7DF86200733B3D /* APICall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		8F315CC71C7DF88600733B3D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				8F315CC91C7DF8A700733B3D /* Booking.swift */,
 				8F315CCB1C7DF9DD00733B3D /* ProfileController.swift */,
 				8F315CD11C7DFABC00733B3D /* RegisterVC.swift */,
+				34F2368B1C9B1EE800EA35E4 /* editProfile.swift */,
+				34F236891C9B00AE00EA35E4 /* myprofile.swift */,
 				C9C786871C83A729009F4CDC /* ThetaBooking-Bridging-Header.h */,
 			);
 			path = ThetaBooking;
@@ -301,6 +307,8 @@
 				8F315CC81C7DF88600733B3D /* Date.swift in Sources */,
 				8FE607211C7BA1AF0015666B /* SearchViewController.swift in Sources */,
 				8F315CC61C7DF86200733B3D /* APICall.swift in Sources */,
+				34F2368C1C9B1EE800EA35E4 /* editProfile.swift in Sources */,
+				34F2368A1C9B00AE00EA35E4 /* myprofile.swift in Sources */,
 				11D7D2821C4D35000065E502 /* ThetaBooking.xcdatamodeld in Sources */,
 				11D7D27C1C4D35000065E502 /* LoginViewController.swift in Sources */,
 				11D7D27A1C4D35000065E502 /* AppDelegate.swift in Sources */,
