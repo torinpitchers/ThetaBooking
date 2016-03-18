@@ -27,6 +27,7 @@
 		8F315CD21C7DFABC00733B3D /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F315CD11C7DFABC00733B3D /* RegisterVC.swift */; };
 		8FE607211C7BA1AF0015666B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE607201C7BA1AF0015666B /* SearchViewController.swift */; };
 		C914BB9F1C9AFDC80037E45B /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914BB9E1C9AFDC80037E45B /* BookingsViewController.swift */; };
+		C914BBA11C9C57E70037E45B /* AvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C914BBA01C9C57E70037E45B /* AvailabilityViewController.swift */; };
 		C995B80F1C6B851600D72AB6 /* NextBookingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C995B80E1C6B851600D72AB6 /* NextBookingVC.swift */; };
 		C9C7868A1C83A72A009F4CDC /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = C9C786891C83A72A009F4CDC /* KeychainWrapper.m */; };
 /* End PBXBuildFile section */
@@ -75,6 +76,7 @@
 		8F315CD11C7DFABC00733B3D /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		8FE607201C7BA1AF0015666B /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		C914BB9E1C9AFDC80037E45B /* BookingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
+		C914BBA01C9C57E70037E45B /* AvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityViewController.swift; sourceTree = "<group>"; };
 		C995B80E1C6B851600D72AB6 /* NextBookingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextBookingVC.swift; sourceTree = "<group>"; };
 		C9C786871C83A729009F4CDC /* ThetaBooking-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ThetaBooking-Bridging-Header.h"; sourceTree = "<group>"; };
 		C9C786881C83A72A009F4CDC /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				11D7D2791C4D35000065E502 /* AppDelegate.swift */,
 				11D7D27B1C4D35000065E502 /* LoginViewController.swift */,
 				11D7D27D1C4D35000065E502 /* Main.storyboard */,
+				C914BBA01C9C57E70037E45B /* AvailabilityViewController.swift */,
 				C914BB9E1C9AFDC80037E45B /* BookingsViewController.swift */,
 				34A1B82A1C6B8F1C00081C0B /* HomeScreen.swift */,
 				11D7D2851C4D35000065E502 /* LaunchScreen.storyboard */,
@@ -313,6 +316,7 @@
 				8F315CC61C7DF86200733B3D /* APICall.swift in Sources */,
 				34F2368C1C9B1EE800EA35E4 /* editProfile.swift in Sources */,
 				34F2368A1C9B00AE00EA35E4 /* myprofile.swift in Sources */,
+				C914BBA11C9C57E70037E45B /* AvailabilityViewController.swift in Sources */,
 				11D7D2821C4D35000065E502 /* ThetaBooking.xcdatamodeld in Sources */,
 				11D7D27C1C4D35000065E502 /* LoginViewController.swift in Sources */,
 				11D7D27A1C4D35000065E502 /* AppDelegate.swift in Sources */,
