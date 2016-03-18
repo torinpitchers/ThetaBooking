@@ -115,7 +115,7 @@ class APICall {
             }
         }).resume()
         sleep(1)
-        return success
+        return success!
     }
     
     // <---------- User focused functions ----------->

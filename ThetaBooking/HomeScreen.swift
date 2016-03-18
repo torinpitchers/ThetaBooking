@@ -17,15 +17,13 @@ struct menuItem {
 let item1 = menuItem(name: "Search", icon: UIImage(named: "menuSearch")!)
 let item2 = menuItem(name: "Profile", icon: UIImage(named: "menuProfile")!)
 let item3 = menuItem(name: "Bookings", icon: UIImage(named: "menuBookings")!)
-
-let items:[menuItem] = [item1,item2,item3]
+let item4 = menuItem(name: "Availability", icon: UIImage(named: "menuBookings")!)
+let items:[menuItem] = [item1,item2,item3,item4]
 
 class MenuItemCell : UITableViewCell {
     
     @IBOutlet var menuImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    
-    
     
 }
 
@@ -52,9 +50,6 @@ class HomeScreenController: UIViewController {
 
 class HomeScreenTable: UITableViewController {
     
-    
-   
-
     override func viewDidLoad() {
     super.viewDidLoad()
         self.tableView.separatorStyle = .None
@@ -90,9 +85,6 @@ class HomeScreenTable: UITableViewController {
             headerView.alpha = 1.0
         }
         return headerView
-        
-        
-        
         
     }
     
@@ -130,6 +122,10 @@ class HomeScreenTable: UITableViewController {
             else if text == "Bookings"{
                 performSegueWithIdentifier("HomeToBookings", sender: self)
             }
+            else if text == "Availability"{
+                performSegueWithIdentifier("HomeToAvailability", sender: self)
+            }
+
             
         }
         
