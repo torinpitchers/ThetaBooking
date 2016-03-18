@@ -9,6 +9,7 @@
 import Foundation
 
 struct Availability {
+    var username: String
     var name:String
     var start:String
     var end:String
@@ -16,5 +17,4 @@ struct Availability {
     var notes:String
     var reucurring: Bool
     var bookable: Bool
-    
 }

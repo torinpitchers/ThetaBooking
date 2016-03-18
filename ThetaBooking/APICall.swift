@@ -349,22 +349,19 @@ class APICall {
         })
     }
     
-    class func postAvailability(name: String, startTime:String, stopTime:String, date:String, username:String) throws {
-        guard let username = defaults.objectForKey("username") as? String else {
-            throw APIError.DefaultsError
-        }
+    class func postAvailability(avail: Availability) throws {
         guard let token = defaults.objectForKey("token") as? String else {
             throw APIError.DefaultsError
         }
         let dictionary: NSDictionary = [
-            "name": name,
-            "timeStart": startTime,
-            "timeStop": stopTime,
-            "date":date,
-            "notes":"",
-            "recurringWeekly": false,
-            "bookable": true,
-            "username": username
+            "name": avail.name,
+            "timeStart": avail.start,
+            "timeStop": avail.end,
+            "date":avail.end,
+            "notes":avail.notes,
+            "recurringWeekly": avail.reucurring,
+            "bookable": avail.bookable,
+            "username": avail.username
         ]
         let json = try NSJSONSerialization.dataWithJSONObject(dictionary, options:[])
         let urlString = "http://cortexapi.ddns.net:8080/api/addNewAvailability"
@@ -417,47 +414,21 @@ class APICall {
         }).resume()
     }
     
-    class func createAppointment(start:String, end:String, date:String, participants:[String], bookable: String, location: String, reoccurance: String, title:String, notes: String) throws {
+    class func createAppointment(booking: Booking) throws {
         
-        guard let startString:String = start as String else {
-            throw APIError.DictionaryError
-        }
-        guard let endString:String = end as String else {
-            throw APIError.DictionaryError
-        }
-        guard let dateString:String = date as String else {
-            throw APIError.DictionaryError
-        }
-        guard let participantsList:[String] = participants as [String] else {
-            throw APIError.DictionaryError
-        }
-//        guard let bookableString:String = bookable as String else {
-//            throw APIError.DictionaryError
-//        }
-        guard let locationString:String = location as String else {
-            throw APIError.DictionaryError
-        }
-        guard let reoccuranceString:String = reoccurance as String else{
-            throw APIError.DictionaryError
-        }
-        guard let titleString:String = title as String else {
-            throw APIError.DictionaryError
-        }
-        guard let notesString:String = notes as String else {
-            throw APIError.DictionaryError
-        }
         let dictionary:NSDictionary = [
-            "startTime": startString,
-            "endTime": endString,
-            "date": dateString,
-            "participants": participantsList,
-            "bookable": true,
-            "location": locationString,
-            "reoccurance": reoccuranceString,
-            "title": titleString,
-            "notes": notesString,
+            "startTime": booking.start,
+            "endTime": booking.end,
+            "date": booking.date,
+            "participants": booking.participants,
+            "bookable": booking.bookable,
+            "location": booking.location,
+            "reoccurance": true,
+            "title": booking.title,
+            "notes": booking.notes,
             "parentApp": "ThetaBooking-iOS"
         ]
+        
         let json = try NSJSONSerialization.dataWithJSONObject(dictionary, options:[])
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/addNewAppointment")!)
         request.HTTPMethod = "POST"
