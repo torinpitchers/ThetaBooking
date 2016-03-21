@@ -42,13 +42,14 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         
-        let jack:User = User(name: "jack turriff", email: "jackturriff@gamil.com", staff: false, skills: [], bio: "", picture: NSData())
+        let jack:User = User(name: "TorinPitchers", email: "jackturriff@gamil.com", staff: false, skills: [], bio: "", picture: NSData())
         
         
         
         do{
-            try APICall.deleteUser("jackturriff@gmail.com", password: "123")
-        } catch {}
+            try APICall.modifyUser("torinpitchers", updatedUser: jack, password: "123")
+        } catch {
+            print("Failed to modift user")}
 
         
         
