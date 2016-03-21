@@ -41,6 +41,13 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        do {
+            try APICall.AllLecturers({ (userlist) -> () in
+                print(userlist)
+            })
+        }catch{}
+        
+        
         }
     
     override func didReceiveMemoryWarning() {
@@ -121,7 +128,7 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
             skillsLabel.text = text
         }
         if let imageView = cell.profileImage {
-            imageView.image = user.picture
+            imageView.image = UIImage(data: user.picture)
         }
         return cell
     }

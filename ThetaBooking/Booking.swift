@@ -9,10 +9,13 @@
 import Foundation
 
 struct Booking {
-    let id: Int
-    var accepted: Bool
+    var start: String
+    var end: String
     var date: String
-    var staff: String
-    var student: String
-    var length: Int
+    var participants: [String]
+    var bookable: Bool
+    var location: String
+    var title: String
+    var notes: String
+    
 }
