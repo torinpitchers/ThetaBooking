@@ -174,7 +174,7 @@ class APICall {
                 
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 print(json)
-                guard let tokenFromAPI = json["token"] as? String else {
+                guard let tokenFromAPI = json["data"] as? String else {
                     throw APIError.ResponseError
                 }
                 let defaults = NSUserDefaults.standardUserDefaults()
@@ -284,13 +284,21 @@ class APICall {
         }).resume()
     }
     
-    class func deleteUser(email: String) throws {
+    class func deleteUser(email: String, password:String) throws {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }
         let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/deletePerson/\(emailString)")!)
+        
+        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "DELETE"
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.valueForKey("token") as! String
+    
+
+        request.setValue(token, forHTTPHeaderField: "token")
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
@@ -305,21 +313,45 @@ class APICall {
         }).resume()
     }
     
-    class func modifyUser(email:String) throws {
+    class func modifyUser(email:String, updatedUser:User, password:String) throws {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.valueForKey("token") as! String
+        
         let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/modifyPerson/\(emailString)")!)
+        
+        request.setValue(token, forHTTPHeaderField: "token")
+        
+        let userData: NSDictionary = [
+            "name": updatedUser.name,
+            "email": updatedUser.email,
+            "password": password,
+            "lecturer": false
+        ]
+        
+        let json = try NSJSONSerialization.dataWithJSONObject(userData, options:[])
+        
+        
+        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "PUT"
+        request.HTTPBody = json
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
                 guard let _ = data else {
                     throw APIError.ResponseError
                 }
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                print(json)
+                let responsejson = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                print(responsejson)
+                
+                
+                
+                
+                
+                
             } catch {
                 print("Error")
             }
@@ -449,5 +481,39 @@ class APICall {
             }
         }).resume()
     }
+    
+    
+    class func deleteAppointment(id: String) throws {
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/deleteAppointment/\(id)")!)
+        
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "DELETE"
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.valueForKey("token") as! NSString
+        
+        let tokenData:NSData = token.dataUsingEncoding(NSUTF8StringEncoding)!
+        let token64 = tokenData.base64EncodedStringWithOptions([])
+        
+        
+        print(token)
+        request.setValue("token \(token64)", forHTTPHeaderField: "Authorization")
+        let session:NSURLSession = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                print(json)
+            } catch {
+                print("Error")
+            }
+        }).resume()
+    }
+
+    
     
 }
