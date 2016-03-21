@@ -436,14 +436,14 @@ class APICall {
                     return
                 }
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
-                print(json)
+                
                 let dataobjects: AnyObject = json["data"] as AnyObject!
                 
                 
                 for (var i:Int = 0; i<dataobjects.count; i++) {
-                    let name:String = dataobjects[0][1] as! String
-                    let email:String = dataobjects[0][2] as! String
-                    let skills:[String] = dataobjects[0][0] as! [String]
+                    let name:String = dataobjects[i][1] as! String
+                    let email:String = dataobjects[i][2] as! String
+                    let skills:[String] = dataobjects[i][0] as! [String]
                     
                     let user:User = User(name: name, email: email, staff: true, skills: skills, bio: "", picture: NSData())
                     
