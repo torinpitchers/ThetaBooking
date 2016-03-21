@@ -110,7 +110,7 @@ class LoginViewController: UIViewController {
             
         
         } else if sender.tag == loginButtonTag {
-            if checkLogin(usernameField.text!, password: passwordField.text!) {
+            
                 
                 do {
                     let success = try APICall.authenticate(usernameField.text!, password: passwordField.text!)
@@ -125,7 +125,7 @@ class LoginViewController: UIViewController {
                 print("not equal to NSUserDefaults")
             }
         }
-    }
+    
     
     
     //if the user hits return on the keypad then the keyboard disappears

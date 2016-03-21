@@ -187,6 +187,84 @@ class HomeScreenSettings: UITableViewController {
         if cell?.textLabel!.text == "About" {
             performSegueWithIdentifier("settingsToAbout", sender: self)
         }
+        else if cell?.textLabel!.text == "Delete Account" {
+            
+            
+                let alert: UIAlertController = UIAlertController(title: "Confirm Deletion", message: "Are you sure you want to delete your account? This is not reversable.", preferredStyle: UIAlertControllerStyle.Alert)
+            let action:UIAlertAction = UIAlertAction(title: "Yes I'm Sure", style: UIAlertActionStyle.Default, handler:{(action:UIAlertAction) in
+                
+                let defaults = NSUserDefaults.standardUserDefaults()
+                
+                let email:String = defaults.valueForKey("username") as! String
+                
+                
+                do{
+                    try APICall.deleteUser(email)
+                    defaults.removeObjectForKey("username")
+                    
+                    
+                    
+                    self.dismissViewControllerAnimated(true, completion: {self.performSegueWithIdentifier("settingsToLogin", sender: self)})
+                }
+                catch {}
+            })
+            
+                let action3:UIAlertAction = UIAlertAction(title: "No", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+                alert.addAction(action)
+                alert.addAction(action3)
+                presentViewController(alert, animated: true, completion: nil)
+            
+            
+        }
+        else if cell?.textLabel!.text == "Change Password" {
+            let alert: UIAlertController = UIAlertController(title: "Change Password", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            alert.addTextFieldWithConfigurationHandler({ (UITextField) -> Void in
+                UITextField.placeholder = "Confirm Current Password"
+                UITextField.secureTextEntry = true
+            })
+            alert.addTextFieldWithConfigurationHandler({ (UITextField) -> Void in
+                UITextField.placeholder = "New Password"
+                UITextField.secureTextEntry = true
+            })
+            
+            let action:UIAlertAction = UIAlertAction(title: "Change Password", style: UIAlertActionStyle.Default, handler:{(action:UIAlertAction) in
+                
+                let defaults = NSUserDefaults.standardUserDefaults()
+                let MyKeychainWrapper = KeychainWrapper()
+                let email:String = defaults.valueForKey("username") as! String
+                let password = MyKeychainWrapper.valueForKey(kSecValueData as String) as! String
+                let oldPassword:String = alert.textFields![0].text!
+                let newPassword:String = alert.textFields![1].text!
+                
+                if oldPassword != password {
+                    print("PASSWORD NOT MATCHING")
+                }
+                else{
+                    do{
+                        
+                        
+                        
+                        defaults.removeObjectForKey("username")
+                        
+                        
+                        
+                        self.dismissViewControllerAnimated(true, completion: {self.performSegueWithIdentifier("settingsToLogin", sender: self)})
+                    }
+                    catch {}
+                }
+                
+                
+            })
+            
+            let action3:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+            
+            alert.addAction(action)
+            alert.addAction(action3)
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        
     }
     
 }

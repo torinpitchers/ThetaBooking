@@ -284,7 +284,7 @@ class APICall {
         }).resume()
     }
     
-    class func deleteUser(email: String, password:String) throws {
+    class func deleteUser(email: String) throws {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }

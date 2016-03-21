@@ -408,7 +408,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="181"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="682B838A-370D-4085-966D-BA77F7EA02AD" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2E0F34DC-E8CF-446A-93A8-DDF79614C5CB" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
                                             <rect key="frame" x="16" y="8" width="146" height="146"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="SeA-Hs-c7Y"/>
@@ -556,6 +556,7 @@
                     </tableView>
                     <connections>
                         <segue destination="sOj-Pn-JEK" kind="show" identifier="settingsToAbout" id="3RD-jf-3Q9"/>
+                        <segue destination="b7i-LR-0fF" kind="show" identifier="settingsToLogin" id="zD0-Po-6MT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QDc-2j-7yb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -890,7 +891,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="682B838A-370D-4085-966D-BA77F7EA02AD" width="300" height="300">
+        <image name="2E0F34DC-E8CF-446A-93A8-DDF79614C5CB" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -5465,5 +5466,8 @@ AAQtagAELW0ABC1yAAAAAAAABAEAAAAAAAAAPwAAAAAAAAAAAAAAAAAELXQ
         <image name="settings" width="32" height="32"/>
         <image name="uniLogo" width="289" height="289"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="zD0-Po-6MT"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
