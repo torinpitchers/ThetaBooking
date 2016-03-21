@@ -137,6 +137,40 @@ class APICall {
             completion(userResults)
         }).resume()
     }
+    
+    class func getUserByEmail(email:String, completion: (User) -> ()) throws {
+        var user:User!
+        let url:NSURL = NSURL(string:"http://cortexapi.ddns.net:8080/api/lookUpPerson/\(email)")!
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "GET"
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                //print(response)
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                print(json)
+                let data: AnyObject = json["data"] as AnyObject!
+                
+               
+                    
+                    let name:String = data[0] as! String
+                    let email:String = data[1] as! String
+                    let skills:[String] = data[2] as! [String]
+                    
+                    user = User(name: name, email: email, staff: true, skills: skills, bio: "", picture: NSData())
+                
+                
+            } catch {
+                print("Error: \(error)")
+                print("Response is: \(response)")
+            }
+            completion(user)
+        }).resume()
+    }
 
 
     
