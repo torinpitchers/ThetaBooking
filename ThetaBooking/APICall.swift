@@ -7,11 +7,15 @@
 //
 
 import Foundation
+import UIKit
 
 enum APIError: ErrorType {
     case ResponseError
     case DictionaryError
+    case DefaultsError
 }
+
+let defaults = NSUserDefaults.standardUserDefaults()
 
 protocol APICallProtocol {
     func getThetaCalendar() throws
@@ -71,6 +75,71 @@ class APICall {
         }).resume()
     }
     
+    class func getAllSkills(completion: ([String]) -> ()) throws {
+        var skillsList = [String]()
+        let url:NSURL = NSURL(string:"http://cortexapi.ddns.net:8080/api/getAllSkills")!
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "GET"
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                //print(response)
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                print(json)
+                let data: AnyObject = json["data"] as AnyObject!
+                
+                for (var i:Int = 0; i<data.count; i++) {
+                    let name:String = data[i]["name"] as! String
+                    skillsList.append(name)
+                }
+                
+            } catch {
+                print("Error: \(error)")
+                print("Response is: \(response)")
+            }
+            completion(skillsList)
+        }).resume()
+    }
+    
+    class func getUser(skill:String, completion: ([User]) -> ()) throws {
+        var userResults:[User] = [User]()
+        let url:NSURL = NSURL(string:"http://cortexapi.ddns.net:8080/api/getPersonBySkill/\(skill)")!
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "GET"
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                //print(response)
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                print(json)
+                let data: AnyObject = json["data"] as AnyObject!
+                
+                for (var i:Int = 0; i<data.count; i++) {
+                    
+                    let name:String = data[i]["name"] as! String
+                    let email:String = data[i]["email"] as! String
+                    
+                    userResults.append(User(name: name, email: email, staff: true, skills: [], bio: "", picture: NSData()))
+                }
+
+            } catch {
+                print("Error: \(error)")
+                print("Response is: \(response)")
+            }
+            completion(userResults)
+        }).resume()
+    }
+
+
+    
     class func authenticate(username: String, password:String) throws -> Bool{
         guard let userString: String = username as String else {
             throw APIError.DictionaryError
@@ -105,7 +174,7 @@ class APICall {
                 
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 print(json)
-                guard let tokenFromAPI = json["token"] as? String else {
+                guard let tokenFromAPI = json["data"] as? String else {
                     throw APIError.ResponseError
                 }
                 let defaults = NSUserDefaults.standardUserDefaults()
@@ -215,13 +284,21 @@ class APICall {
         }).resume()
     }
     
-    class func deleteUser(email: String) throws {
+    class func deleteUser(email: String, password:String) throws {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }
         let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/deletePerson/\(emailString)")!)
+        
+        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "DELETE"
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.valueForKey("token") as! String
+    
+
+        request.setValue(token, forHTTPHeaderField: "token")
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
@@ -236,21 +313,109 @@ class APICall {
         }).resume()
     }
     
-    class func modifyUser(email:String) throws {
+    class func modifyUser(email:String, updatedUser:User, password:String) throws {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.valueForKey("token") as! String
+        
         let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/modifyPerson/\(emailString)")!)
+        
+        request.setValue(token, forHTTPHeaderField: "token")
+        
+        let userData: NSDictionary = [
+            "name": updatedUser.name,
+            "email": updatedUser.email,
+            "password": password,
+            "lecturer": false
+        ]
+        
+        let json = try NSJSONSerialization.dataWithJSONObject(userData, options:[])
+        
+        
+        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "PUT"
+        request.HTTPBody = json
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
                 guard let _ = data else {
                     throw APIError.ResponseError
                 }
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                let responsejson = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                print(responsejson)
+                
+                
+                
+                
+                
+                
+            } catch {
+                print("Error")
+            }
+        }).resume()
+    }
+    
+    class func getAllLocations() throws {
+        _ = [String]()
+        let urlString = "http://cortexapi.ddns.net:8080/api/getAllLocations"
+        let url: NSURL = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "GET"
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
                 print(json)
+                let _: AnyObject = json["data"] as AnyObject!
+                
+            } catch {
+                print("Error getting locations")
+            }
+        })
+    }
+    
+    class func postAvailability(avail: Availability) throws {
+        guard let token = defaults.objectForKey("token") as? String else {
+            throw APIError.DefaultsError
+        }
+        let dictionary: NSDictionary = [
+            "name": avail.name,
+            "timeStart": avail.start,
+            "timeStop": avail.end,
+            "date":avail.end,
+            "notes":avail.notes,
+            "recurringWeekly": avail.reucurring,
+            "bookable": avail.bookable,
+            "username": avail.username
+        ]
+        let json = try NSJSONSerialization.dataWithJSONObject(dictionary, options:[])
+        let urlString = "http://cortexapi.ddns.net:8080/api/addNewAvailability"
+        let url:NSURL = NSURL(string: urlString)!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPBody = json
+        request.HTTPMethod = "POST"
+        request.addValue(token, forHTTPHeaderField: "token")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard error == nil && data != nil else {
+                    return
+                }
+                if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                    print("response = \(response)")
+                }
+                
+                let responseJson = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                print(responseJson)
             } catch {
                 print("Error")
             }
@@ -317,47 +482,21 @@ class APICall {
         }).resume()
     }
     
-    class func createAppointment(start:String, end:String, date:String, participants:[String], bookable: String, location: String, reoccurance: String, title:String, notes: String) throws {
+    class func createAppointment(booking: Booking) throws {
         
-        guard let startString:String = start as String else {
-            throw APIError.DictionaryError
-        }
-        guard let endString:String = end as String else {
-            throw APIError.DictionaryError
-        }
-        guard let dateString:String = date as String else {
-            throw APIError.DictionaryError
-        }
-        guard let participantsList:[String] = participants as [String] else {
-            throw APIError.DictionaryError
-        }
-        guard let bookableString:String = bookable as String else {
-            throw APIError.DictionaryError
-        }
-        guard let locationString:String = location as String else {
-            throw APIError.DictionaryError
-        }
-        guard let reoccuranceString:String = reoccurance as String else{
-            throw APIError.DictionaryError
-        }
-        guard let titleString:String = title as String else {
-            throw APIError.DictionaryError
-        }
-        guard let notesString:String = notes as String else {
-            throw APIError.DictionaryError
-        }
         let dictionary:NSDictionary = [
-            "startTime": startString,
-            "endTime": endString,
-            "date": dateString,
-            "participants": participantsList,
-            "bookable": bookableString,
-            "location": locationString,
-            "reoccurance": reoccuranceString,
-            "title": titleString,
-            "notes": notesString,
+            "startTime": booking.start,
+            "endTime": booking.end,
+            "date": booking.date,
+            "participants": booking.participants,
+            "bookable": booking.bookable,
+            "location": booking.location,
+            "reoccurance": true,
+            "title": booking.title,
+            "notes": booking.notes,
             "parentApp": "ThetaBooking-iOS"
         ]
+        
         let json = try NSJSONSerialization.dataWithJSONObject(dictionary, options:[])
         let request: NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/addNewAppointment")!)
         request.HTTPMethod = "POST"
@@ -367,7 +506,7 @@ class APICall {
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
                 guard error == nil && data != nil else {
-                    return
+                    throw APIError.ResponseError
                 }
                 if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
