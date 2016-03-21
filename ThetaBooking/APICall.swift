@@ -439,11 +439,13 @@ class APICall {
                 
                 let dataobjects: AnyObject = json["data"] as AnyObject!
                 
+                
                 for (var i:Int = 0; i<dataobjects.count; i++) {
-                    let name:String = dataobjects[i]["name"] as! String
-                    let email:String = dataobjects[i]["email"] as! String
+                    let name:String = dataobjects[i][1] as! String
+                    let email:String = dataobjects[i][2] as! String
+                    let skills:[String] = dataobjects[i][0] as! [String]
                     
-                    let user:User = User(name: name, email: email, staff: true, skills: [], bio: "", picture: NSData())
+                    let user:User = User(name: name, email: email, staff: true, skills: skills, bio: "", picture: NSData())
                     
                     userlist.append(user)
                 }
@@ -456,6 +458,8 @@ class APICall {
             completion(userlist)
         }).resume()
     }
+
+    
     
     
     class func searchForLecturer(email:String, completion: ([User]) -> ()) throws {

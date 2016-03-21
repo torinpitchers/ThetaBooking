@@ -55,11 +55,11 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
                 try! APICall.AllLecturers { (userlist: [User]) -> () in
                     self.users = userlist
                     self.searchResults = self.users
-                    super.viewDidLoad()
                     
                     self.searchBar.delegate = self
                     print(self.searchResults.count)
                     self.tableView.reloadData()
+                    super.viewDidLoad()
 
                 }})
         }
@@ -83,8 +83,9 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
         
         
         }
-    
-
+    override func viewDidAppear(animated: Bool) {
+        tableView.reloadData()
+    }
     
     
     override func didReceiveMemoryWarning() {
