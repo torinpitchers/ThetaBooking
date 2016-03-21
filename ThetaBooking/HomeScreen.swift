@@ -244,8 +244,9 @@ class HomeScreenSettings: UITableViewController {
                 else{
                     do{
                         
+                     
                         
-                        
+                      
                         defaults.removeObjectForKey("username")
                         
                         
