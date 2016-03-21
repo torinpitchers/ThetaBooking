@@ -482,38 +482,4 @@ class APICall {
         }).resume()
     }
     
-    
-    class func deleteAppointment(id: String) throws {
-        
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/deleteAppointment/\(id)")!)
-        
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPMethod = "DELETE"
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let token = defaults.valueForKey("token") as! NSString
-        
-        let tokenData:NSData = token.dataUsingEncoding(NSUTF8StringEncoding)!
-        let token64 = tokenData.base64EncodedStringWithOptions([])
-        
-        
-        print(token)
-        request.setValue("token \(token64)", forHTTPHeaderField: "Authorization")
-        let session:NSURLSession = NSURLSession.sharedSession()
-        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
-            do {
-                guard let _ = data else {
-                    throw APIError.ResponseError
-                }
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                print(json)
-            } catch {
-                print("Error")
-            }
-        }).resume()
-    }
-
-    
-    
 }
