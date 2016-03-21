@@ -88,7 +88,7 @@ class APICall {
         request.setValue("Basic \(base64String)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let session:NSURLSession = NSURLSession.sharedSession()
-        var success: Bool!
+        var success: Bool! = true
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
                 guard error == nil && data != nil else {
@@ -281,7 +281,7 @@ class APICall {
         }).resume()
     }
     
-    class func createAppointment(start:String, end:String, date:String, participants:[String], bookable: String, location: String, reoccurance: String, title:String, notes: String) throws {
+    class func createAppointment(start:String, end:String, date:String, participants:[String], bookable: Bool, location: String, reoccurance: Bool, title:String, notes: String) throws {
         
         guard let startString:String = start as String else {
             throw APIError.DictionaryError
@@ -295,13 +295,13 @@ class APICall {
         guard let participantsList:[String] = participants as [String] else {
             throw APIError.DictionaryError
         }
-        guard let bookableString:String = bookable as String else {
+        guard let bookableString:Bool = bookable as Bool else {
             throw APIError.DictionaryError
         }
         guard let locationString:String = location as String else {
             throw APIError.DictionaryError
         }
-        guard let reoccuranceString:String = reoccurance as String else{
+        guard let reoccuranceString:Bool = reoccurance as Bool else{
             throw APIError.DictionaryError
         }
         guard let titleString:String = title as String else {

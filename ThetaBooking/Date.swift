@@ -9,11 +9,19 @@
 import Foundation
 
 extension NSDate {
-    func makeStringFromDate(date:NSDate) -> String {
+    func makeStringForDate(date:NSDate) -> String {
         let formatter:NSDateFormatter = NSDateFormatter()
-        formatter.dateStyle = .FullStyle
-        formatter.timeStyle = .MediumStyle
+        formatter.dateStyle = .ShortStyle
+        formatter.timeStyle = .NoStyle
         let formattedString = formatter.stringFromDate(date)
         return formattedString
     }
+    func makeStringForTime(date:NSDate) -> String {
+        let formatter:NSDateFormatter = NSDateFormatter()
+        formatter.dateStyle = .NoStyle
+        formatter.timeStyle = .ShortStyle
+        let formattedString = formatter.stringFromDate(date)
+        return formattedString
+    }
+
 }

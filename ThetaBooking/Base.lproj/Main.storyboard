@@ -125,8 +125,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cA-iB-QcB">
-                                <rect key="frame" x="20" y="401" width="560" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8cA-iB-QcB">
+                                <rect key="frame" x="20" y="455" width="560" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="TSV-WW-uNp"/>
                                 </constraints>
@@ -137,8 +137,8 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xr2-Ms-qCK">
                                 <rect key="frame" x="20" y="350" width="51" height="31"/>
                             </switch>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4BD-FP-ujW">
-                                <rect key="frame" x="20" y="443" width="560" height="50"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="4BD-FP-ujW">
+                                <rect key="frame" x="20" y="486" width="560" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="xM7-hf-mYp"/>
@@ -156,17 +156,8 @@
                                     <!--2016-03-18 10:40:58 +0000-->
                                 </date>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-x3-Pcc" customClass="ColoredDatePicker" customModule="ThetaBooking" customModuleProvider="target">
-                                <rect key="frame" x="20" y="230" width="560" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="abh-oa-yBu"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="479990458.70564598">
-                                    <!--2016-03-18 10:40:58 +0000-->
-                                </date>
-                            </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8t-8y-l5Q">
-                                <rect key="frame" x="263" y="513" width="75" height="41"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8t-8y-l5Q">
+                                <rect key="frame" x="263" y="544" width="75" height="41"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="4J7-VU-uwt"/>
@@ -179,10 +170,25 @@
                                     <action selector="submitButton:" destination="Ywv-hQ-GUn" eventType="touchUpInside" id="NC6-o2-HFe"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pj2-eM-bci">
+                                <rect key="frame" x="20" y="403" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Jsw-x3-Pcc" customClass="ColoredDatePicker" customModule="ThetaBooking" customModuleProvider="target">
+                                <rect key="frame" x="20" y="230" width="560" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="abh-oa-yBu"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="479990458.70564598">
+                                    <!--2016-03-18 10:40:58 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="pj2-eM-bci" secondAttribute="trailing" constant="20" id="0XJ-rM-BRc"/>
                             <constraint firstItem="Xr2-Ms-qCK" firstAttribute="leading" secondItem="Jsw-x3-Pcc" secondAttribute="leading" id="17U-cu-f8l"/>
                             <constraint firstItem="FRI-wg-ifc" firstAttribute="trailing" secondItem="tRW-gw-klW" secondAttribute="trailingMargin" id="1XM-Np-RNW"/>
                             <constraint firstItem="kqe-Zb-qMb" firstAttribute="top" secondItem="x8e-GP-XDJ" secondAttribute="bottom" constant="10" id="2zx-iz-F3Y"/>
@@ -195,6 +201,7 @@
                             <constraint firstItem="x8e-GP-XDJ" firstAttribute="top" secondItem="lGt-1P-REy" secondAttribute="bottom" constant="10" id="EGT-rQ-zt5"/>
                             <constraint firstItem="4BD-FP-ujW" firstAttribute="trailing" secondItem="8cA-iB-QcB" secondAttribute="trailing" id="EKd-Wv-8Ke"/>
                             <constraint firstItem="Jsw-x3-Pcc" firstAttribute="top" secondItem="FRI-wg-ifc" secondAttribute="bottom" constant="10" id="PDS-0Z-gtj"/>
+                            <constraint firstItem="pj2-eM-bci" firstAttribute="leading" secondItem="tRW-gw-klW" secondAttribute="leading" constant="20" id="PZg-AU-bri"/>
                             <constraint firstItem="FRI-wg-ifc" firstAttribute="trailing" secondItem="Jsw-x3-Pcc" secondAttribute="trailing" id="VwQ-Pw-gb5"/>
                             <constraint firstItem="Jsw-x3-Pcc" firstAttribute="trailing" secondItem="8cA-iB-QcB" secondAttribute="trailing" id="ZmA-oN-bTc"/>
                             <constraint firstItem="8cA-iB-QcB" firstAttribute="leading" secondItem="4BD-FP-ujW" secondAttribute="leading" id="cg7-lD-CsJ"/>
@@ -205,6 +212,7 @@
                             <constraint firstItem="kqe-Zb-qMb" firstAttribute="leading" secondItem="tRW-gw-klW" secondAttribute="leadingMargin" id="kpH-JG-XFJ"/>
                             <constraint firstItem="LN7-Jh-Rme" firstAttribute="leading" secondItem="kqe-Zb-qMb" secondAttribute="leading" id="liz-54-y2w"/>
                             <constraint firstItem="FRI-wg-ifc" firstAttribute="top" secondItem="LN7-Jh-Rme" secondAttribute="bottom" constant="10" id="pq6-wa-ZI1"/>
+                            <constraint firstItem="pj2-eM-bci" firstAttribute="top" secondItem="Xr2-Ms-qCK" secondAttribute="bottom" constant="20" id="qUn-rD-IWY"/>
                             <constraint firstItem="LN7-Jh-Rme" firstAttribute="leading" secondItem="FRI-wg-ifc" secondAttribute="leading" id="qnQ-8G-731"/>
                             <constraint firstItem="4BD-FP-ujW" firstAttribute="top" secondItem="8cA-iB-QcB" secondAttribute="bottom" constant="19" id="sYZ-8P-rfL"/>
                             <constraint firstItem="Anc-hV-Id4" firstAttribute="top" secondItem="N8t-8y-l5Q" secondAttribute="bottom" constant="46" id="vOi-gD-wpi"/>
@@ -215,6 +223,8 @@
                         <outlet property="AvailableFromPicker" destination="LN7-Jh-Rme" id="Tfb-Yi-ylP"/>
                         <outlet property="AvailableToPicker" destination="Jsw-x3-Pcc" id="emg-xg-8ed"/>
                         <outlet property="LecturerName" destination="x8e-GP-XDJ" id="9TL-0I-YmB"/>
+                        <outlet property="Notes" destination="4BD-FP-ujW" id="LFk-Tg-JKx"/>
+                        <outlet property="textField" destination="pj2-eM-bci" id="I6f-GE-ZYs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OKF-XO-JlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -517,8 +527,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="Attendees" destination="MnZ-S5-bpH" id="MRH-AD-XEa"/>
+                                    <outlet property="Location" destination="a2U-ST-U1E" id="yew-q5-YGU"/>
                                     <outlet property="endTime" destination="CFL-oR-cQV" id="yEV-kZ-Vf6"/>
-                                    <outlet property="hideMe" destination="a2U-ST-U1E" id="bcw-5a-XS3"/>
+                                    <outlet property="fullDate" destination="0vi-C6-CIW" id="Wsj-Nr-YHd"/>
+                                    <outlet property="notesLabel" destination="zbO-Js-3nK" id="pHi-hE-aHz"/>
                                     <outlet property="startTime" destination="6Sa-bx-pMy" id="nfq-n1-Lgh"/>
                                 </connections>
                             </tableViewCell>
@@ -787,7 +799,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="181.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="04F1888D-222C-43EF-AEF1-93BA5BCC0EDF" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2129C960-C13D-4535-B52F-E329B25979B6" translatesAutoresizingMaskIntoConstraints="NO" id="tvI-39-xyY">
                                             <rect key="frame" x="16" y="8" width="146" height="146"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="150" id="SeA-Hs-c7Y"/>
@@ -1492,7 +1504,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="04F1888D-222C-43EF-AEF1-93BA5BCC0EDF" width="300" height="300">
+        <image name="2129C960-C13D-4535-B52F-E329B25979B6" width="300" height="300">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOjtYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISgrLjQ3VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
