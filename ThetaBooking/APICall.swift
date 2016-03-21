@@ -292,14 +292,10 @@ class APICall {
         request.HTTPMethod = "DELETE"
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        let token = defaults.valueForKey("token") as! NSString
+        let token = defaults.valueForKey("token") as! String
     
-        let tokenData:NSData = token.dataUsingEncoding(NSUTF8StringEncoding)!
-        let token64 = tokenData.base64EncodedStringWithOptions([])
-        
-        
-        print(token)
-        request.setValue("token \(token64)", forHTTPHeaderField: "Authorization")
+
+        request.setValue(token, forHTTPHeaderField: "token")
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
@@ -318,7 +314,12 @@ class APICall {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.valueForKey("token") as! String
+        
         let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/modifyPerson/\(emailString)")!)
+        
+        request.setValue(token, forHTTPHeaderField: "token")
         
         let userData: NSDictionary = [
             "name": updatedUser.name,
