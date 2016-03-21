@@ -90,9 +90,11 @@ class LoginViewController: UIViewController {
                     }
                     
                     self.defaults.setValue(self.usernameField.text, forKey: "username")
+                    
                     MyKeychainWrapper.mySetObject(passwordField.text, forKey:kSecValueData)
                     MyKeychainWrapper.writeToKeychain()
                     self.defaults.setBool(true, forKey: "hasLoginKey")
+                    print(self.defaults.valueForKey("username") as? String)
                     self.defaults.synchronize()
                     loginButton.tag = loginButtonTag
                     

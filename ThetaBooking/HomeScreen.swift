@@ -234,7 +234,7 @@ class HomeScreenSettings: UITableViewController {
                 let defaults = NSUserDefaults.standardUserDefaults()
                 let MyKeychainWrapper = KeychainWrapper()
                 let email:String = defaults.valueForKey("username") as! String
-                let password = MyKeychainWrapper.valueForKey(kSecValueData as String) as! String
+                let password = MyKeychainWrapper.myObjectForKey("v_Data") as! String
                 let oldPassword:String = alert.textFields![0].text!
                 let newPassword:String = alert.textFields![1].text!
                 
@@ -244,10 +244,17 @@ class HomeScreenSettings: UITableViewController {
                 else{
                     do{
                         
-                     
+                        let _ = try APICall.getUserByEmail(email, completion: { (user) -> () in
+                            do{
+                                try APICall.modifyUser(email, updatedUser: user, password: newPassword)
+                                
+                            self.dismissViewControllerAnimated(true, completion: {self.performSegueWithIdentifier("settingsToLogin", sender: self)})
+                            }
+                            
+                            catch{}
+                        })
                         
                       
-                        defaults.removeObjectForKey("username")
                         
                         
                         
@@ -264,6 +271,10 @@ class HomeScreenSettings: UITableViewController {
             alert.addAction(action)
             alert.addAction(action3)
             presentViewController(alert, animated: true, completion: nil)
+        }
+        else if cell?.textLabel!.text == "Logout" {
+            
+            self.dismissViewControllerAnimated(true, completion: {self.performSegueWithIdentifier("settingsToLogin", sender: self)})
         }
         
     }
