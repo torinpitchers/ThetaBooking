@@ -21,6 +21,18 @@ class AvailabilityViewController: UIViewController{
 
     
     
+    
+    @IBOutlet weak var slider: UISlider!
+    
+    @IBOutlet weak var sliderLabel: UILabel!
+    
+    @IBAction func valueChanged(sender: AnyObject) {
+        
+        let currentValue  = Int(slider.value)
+        sliderLabel.text = "\(currentValue)"
+    }
+    
+    
     @IBOutlet weak var LecturerName: UILabel!
  
     @IBOutlet weak var AvailableFromPicker: ColoredDatePicker!
@@ -41,17 +53,10 @@ class AvailabilityViewController: UIViewController{
             let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
             alertView.addAction(okAction)
             self.presentViewController(alertView, animated: true, completion: nil)
-            return;
+            return
         }
-//        if startTime <= endTime{
-//            let alertView = UIAlertController(title: "Please check the time!",
-//                message: "Please ensure that you've selected a day and time!" as String, preferredStyle:.Alert)
-//            let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-//            alertView.addAction(okAction)
-//            self.presentViewController(alertView, animated: true, completion: nil)
-//            return;
+        
 
-//        }
         do {
         try APICall.createAppointment(startTime, end: endTime, date: startDate, participants: people, bookable: bookable, location: "Theta", reoccurance: recurrence, title: retrieveUsername, notes: Notes.text)
         } catch {

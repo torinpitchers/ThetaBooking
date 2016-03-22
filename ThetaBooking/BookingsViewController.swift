@@ -196,6 +196,6 @@ class BookingCustomCell: UITableViewCell {
     
     @IBOutlet weak var notesLabel: UILabel!
     
-    
+
     
 }
