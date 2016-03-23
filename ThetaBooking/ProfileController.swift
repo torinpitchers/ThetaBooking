@@ -28,8 +28,8 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
     
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    private var users:[User] = []
-    private var searchResults:[User] = []
+    var users:[User] = []
+    var searchResults:[User] = []
     
     func search(text:String) {
         

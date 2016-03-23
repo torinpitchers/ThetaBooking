@@ -318,7 +318,7 @@ class APICall {
         }).resume()
     }
     
-    class func deleteUser(email: String) throws {
+    class func deleteUser(email: String) throws -> Bool {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }
@@ -330,7 +330,7 @@ class APICall {
         
         let defaults = NSUserDefaults.standardUserDefaults()
         let token = defaults.valueForKey("token") as! String
-    
+        var success = false
 
         request.setValue(token, forHTTPHeaderField: "token")
         let session:NSURLSession = NSURLSession.sharedSession()
@@ -341,10 +341,16 @@ class APICall {
                 }
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 print(json)
+                
+                if json["status"] as! String == "success" {
+                    success = true
+                }
             } catch {
                 print("Error")
             }
         }).resume()
+        sleep(1)
+        return success
     }
     
     class func modifyUser(email:String, updatedUser:User, password:String) throws {
