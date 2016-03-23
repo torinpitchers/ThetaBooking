@@ -13,14 +13,7 @@ class APITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    func testRegisterGood() {
+        //testRegisterGood
         do{
             //try authenticate with known bad login
             let register = try APICall.ResisterPerson("dummy data", email: "dummy@data.com", username: "dummydata123", password: "123456789", skills: [], lecturer: false)
@@ -31,8 +24,26 @@ class APITests: XCTestCase {
         catch{
             XCTFail("should not be an error")
         }
-        
     }
+    
+    override func tearDown() {
+       // test deleteusergood
+        do{
+            //authenticate user to save token
+            let auth = try APICall.authenticate("dummydata123", password: "123456789")
+            //try delete user
+            let del:Bool = try APICall.deleteUser("dummy@data.com")
+            //should not be any errors so should get here
+            
+            
+        }
+        catch{
+            XCTFail("should not be an error")
+        }
+        
+        super.tearDown()
+    }
+    
 
     func testAuthenticationGood() {
         do{
@@ -63,6 +74,7 @@ class APITests: XCTestCase {
         
     }
     
+    
     func testAuthenticationUnexpectedInput() {
         do{
             //try authenticate with known bad login
@@ -79,14 +91,14 @@ class APITests: XCTestCase {
     
    
     
-    func testDeleteUserGood() {
+    func testDeleteUserBad() {
         do{
             //authenticate user to save token
             let auth = try APICall.authenticate("dummydata123", password: "123456789")
-            //try delete user
-            let del:Bool = try APICall.deleteUser("dummy@data.com")
-            //should not be any errors so should get here
-            XCTAssertEqual(del, true)
+            //try delete user with incorrect email
+            let del:Bool = try APICall.deleteUser("dummy77@data.com")
+            //should not be false as should fail
+            XCTAssertEqual(del, false)
             
         }
         catch{
@@ -95,14 +107,29 @@ class APITests: XCTestCase {
         
     }
     
-    func testDeleteUserBad() {
+    func testModifyUserGood() {
         do{
             //authenticate user to save token
-            let auth = try APICall.authenticate("dummydata123", password: "123456789")
-            //try delete user with incorrect email
-            let del:Bool = try APICall.deleteUser("dummy77@data.com")
-            //should not be any errors so should get here
-            XCTAssertEqual(del, true)
+            let _ = try APICall.authenticate("dummydata123", password: "123456789")
+            
+            
+            //construct user
+            let aUser:User = User(name: "dummy data", email: "dummy@data.com", staff: false, skills: [], bio: "", picture: NSData())
+            
+            
+            //try change password
+            try APICall.modifyUser("dummy@data.com", updatedUser: aUser, password: "123")
+            sleep(1)
+            
+            //try authenticate with new password
+            let auth = try APICall.authenticate("dummydata123", password: "123")
+            
+            
+            //should be true to pass
+            XCTAssertEqual(auth, true)
+            
+            //try delete user
+            let del:Bool = try APICall.deleteUser("dummy@data.com")
             
         }
         catch{
@@ -110,6 +137,7 @@ class APITests: XCTestCase {
         }
         
     }
+
 
 
 
