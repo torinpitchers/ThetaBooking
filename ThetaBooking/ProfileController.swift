@@ -166,8 +166,9 @@ class ProfileController: UITableViewController, UISearchBarDelegate {
             skillsLabel.text = text
         }
         if let imageView = cell.profileImage {
-            imageView.image = UIImage(data: user.picture)
+            imageView.image = UIImage(named: "profilePlaceholder")
         }
+        //cell.profileImage.image = UIImage(named: "menuSearch")
         return cell
     }
     
