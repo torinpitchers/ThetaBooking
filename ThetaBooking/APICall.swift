@@ -137,6 +137,40 @@ class APICall {
             completion(userResults)
         }).resume()
     }
+    
+    class func getUserByEmail(email:String, completion: (User) -> ()) throws {
+        var user:User!
+        let url:NSURL = NSURL(string:"http://cortexapi.ddns.net:8080/api/lookUpPerson/\(email)")!
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.HTTPMethod = "GET"
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                //print(response)
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                print(json)
+                let data: AnyObject = json["data"] as AnyObject!
+                
+               
+                    
+                    let name:String = data[0] as! String
+                    let email:String = data[1] as! String
+                    let skills:[String] = data[2] as! [String]
+                    
+                    user = User(name: name, email: email, staff: true, skills: skills, bio: "", picture: NSData())
+                
+                
+            } catch {
+                print("Error: \(error)")
+                print("Response is: \(response)")
+            }
+            completion(user)
+        }).resume()
+    }
 
 
     
@@ -174,7 +208,7 @@ class APICall {
                 
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 print(json)
-                guard let tokenFromAPI = json["token"] as? String else {
+                guard let tokenFromAPI = json["data"] as? String else {
                     throw APIError.ResponseError
                 }
                 let defaults = NSUserDefaults.standardUserDefaults()
@@ -284,13 +318,21 @@ class APICall {
         }).resume()
     }
     
-    class func deleteUser(email: String) throws {
+    class func deleteUser(email: String, password:String) throws {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }
         let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/deletePerson/\(emailString)")!)
+        
+        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "DELETE"
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.valueForKey("token") as! String
+    
+
+        request.setValue(token, forHTTPHeaderField: "token")
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
@@ -305,21 +347,45 @@ class APICall {
         }).resume()
     }
     
-    class func modifyUser(email:String) throws {
+    class func modifyUser(email:String, updatedUser:User, password:String) throws {
         guard let emailString:String = email as String else {
             throw APIError.DictionaryError
         }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let token = defaults.valueForKey("token") as! String
+        
         let request = NSMutableURLRequest(URL: NSURL(string: "http://cortexapi.ddns.net:8080/api/modifyPerson/\(emailString)")!)
+        
+        request.setValue(token, forHTTPHeaderField: "token")
+        
+        let userData: NSDictionary = [
+            "name": updatedUser.name,
+            "email": updatedUser.email,
+            "password": password,
+            "lecturer": false
+        ]
+        
+        let json = try NSJSONSerialization.dataWithJSONObject(userData, options:[])
+        
+        
+        
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.HTTPMethod = "PUT"
+        request.HTTPBody = json
         let session:NSURLSession = NSURLSession.sharedSession()
         session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
             do {
                 guard let _ = data else {
                     throw APIError.ResponseError
                 }
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                print(json)
+                let responsejson = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                print(responsejson)
+                
+                
+                
+                
+                
+                
             } catch {
                 print("Error")
             }
@@ -389,6 +455,46 @@ class APICall {
             }
         }).resume()
     }
+    
+    
+    class func AllLecturers(completion: ([User]) -> ()) throws {
+        let url:NSURL = NSURL(string: "http://cortexapi.ddns.net:8080/api/getAllLecturer")!
+        let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        var userlist:[User] = []
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session:NSURLSession = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard error == nil && data != nil else {
+                    return
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                print(json)
+                let dataobjects: AnyObject = json["data"] as AnyObject!
+                
+                
+                for (var i:Int = 0; i<dataobjects.count; i++) {
+                    let name:String = dataobjects[0][1] as! String
+                    let email:String = dataobjects[0][2] as! String
+                    let skills:[String] = dataobjects[0][0] as! [String]
+                    
+                    let user:User = User(name: name, email: email, staff: true, skills: skills, bio: "", picture: NSData())
+                    
+                    userlist.append(user)
+                }
+                
+                
+                
+            } catch {
+                print("Error")
+            }
+            completion(userlist)
+        }).resume()
+    }
+
+    
+    
     
     class func searchForLecturer(email:String, completion: ([User]) -> ()) throws {
         guard let emailForRequest:String = email as String else {
