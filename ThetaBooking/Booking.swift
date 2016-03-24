@@ -17,5 +17,16 @@ struct Booking {
     var location: String
     var title: String
     var notes: String
-    
+    var recurringWeekly: Bool
+    init() {
+        start = ""
+        end = ""
+        date = ""
+        participants = []
+        bookable = false
+        location = ""
+        title = ""
+        notes = ""
+        recurringWeekly = false
+    }
 }

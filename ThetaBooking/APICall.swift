@@ -30,50 +30,7 @@ protocol APICallProtocol {
 }
 
 class APICall {
-    class func getThetaCalendar(completion: ([User]) -> ()) throws {
-        let userList = [User]()
-        let url:NSURL = NSURL(string:"http://cortexapi.ddns.net:8080/api/theta")!
-        let request = NSMutableURLRequest(URL: url)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPMethod = "GET"
-        let session = NSURLSession.sharedSession()
-        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
-            do {
-                print(response)
-                guard let _ = data else {
-                    throw APIError.ResponseError
-                }
-                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
-                print(json)
-                
-            } catch {
-                print("Error: \(error)")
-                print("Response is: \(response)")
-            }
-            completion(userList)
-        }).resume()
-    }
     
-    class func getThetaCalendarByDay(day: String, completion: ([Booking]) -> ()) throws {
-        let bookingList = [Booking]()
-        let url: NSURL = NSURL(string: "http://cortextapi.ddns.net:8080/api/thetaDay/\(day)")!
-        let request = NSMutableURLRequest(URL: url)
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.HTTPMethod = "GET"
-        let session = NSURLSession.sharedSession()
-        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
-            do {
-                guard let _ = data else {
-                    throw APIError.ResponseError
-                }
-                let json = try NSJSONSerialization.dataWithJSONObject(data!, options: [])
-                print(json)
-            } catch {
-                print("Error")
-            }
-            completion(bookingList)
-        }).resume()
-    }
     
     class func getAllSkills(completion: ([String]) -> ()) throws {
         var skillsList = [String]()
@@ -105,7 +62,60 @@ class APICall {
         }).resume()
     }
     
-    class func getUser(skill:String, completion: ([User]) -> ()) throws {
+    class func getAvailabilityByPerson(email:String, competion:([Booking]) -> ()) throws {
+        var results = [Booking]()
+        guard let emailString:String = email else {
+            throw APIError.DictionaryError
+        }
+        let url:NSURL = NSURL(string: "http://cortexapi.ddns.net:8080/api/getAvailabilityByPerson/\(emailString)")!
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                guard let items: [AnyObject] =  (json["items"] as! [AnyObject]) else {
+                    throw APIError.ResponseError
+                }
+                for item in items {
+                guard let name:String = item["name"] as? String else {
+                    throw APIError.ResponseError
+                }
+                guard let date:String = item["date"] as? String else {
+                    throw APIError.ResponseError
+                }
+                guard let notes:String = item["notes"] as? String else {
+                    throw APIError.ResponseError
+                }
+                guard let start: String = item["timeStart"] as? String else {
+                    throw APIError.ResponseError
+                }
+                guard let end:String = item["timeEnd"] as? String else {
+                    throw APIError.ResponseError
+                }
+                guard let recurring:String = item["recurringWeekly"] as? String else {
+                    throw APIError.ResponseError
+                }
+                var booking = Booking()
+                booking.participants.append(name)
+                booking.date = date
+                booking.start = start
+                booking.end = end
+                booking.notes = notes
+                booking.recurringWeekly = recurring.toBool()!
+                results.append(booking)
+                }
+            } catch {
+                print("Error")
+            }
+            competion(results)
+        }).resume()
+    }
+    
+    class func getUserBySkill(skill:String, completion: ([User]) -> ()) throws {
         var userResults:[User] = [User]()
         let url:NSURL = NSURL(string:"http://cortexapi.ddns.net:8080/api/getPersonBySkill/\(skill)")!
         let request = NSMutableURLRequest(URL: url)
@@ -154,8 +164,6 @@ class APICall {
                 let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
                 print(json)
                 let data: AnyObject = json["data"] as AnyObject!
-                
-               
                     
                     let name:String = data[0] as! String
                     let email:String = data[1] as! String
@@ -457,7 +465,7 @@ class APICall {
     }
     
     
-    class func AllLecturers(completion: ([User]) -> ()) throws {
+    class func getAllLecturers(completion: ([User]) -> ()) throws {
         let url:NSURL = NSURL(string: "http://cortexapi.ddns.net:8080/api/getAllLecturer")!
         let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
         var userlist:[User] = []
@@ -492,9 +500,6 @@ class APICall {
             completion(userlist)
         }).resume()
     }
-
-    
-    
     
     class func searchForLecturer(email:String, completion: ([User]) -> ()) throws {
         guard let emailForRequest:String = email as String else {
@@ -560,6 +565,64 @@ class APICall {
         }).resume()
     }
     
+    class func getPersonalAppointments(email:String, completion:([Booking]) -> ()) throws {
+        var results = [Booking]()
+        guard let emailString:String = email else {
+            throw APIError.DictionaryError
+        }
+        guard let token:String = defaults.objectForKey("token") as? String else {
+            throw APIError.DefaultsError
+        }
+        
+        let url:NSURL = NSURL(string: "http://cortexapi.ddns.net:8080/api/getPersonalAppointments/\(emailString)")!
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue(token, forHTTPHeaderField: "token")
+        request.HTTPMethod = "GET"
+        let session = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                guard let _ = data else {
+                    throw APIError.ResponseError
+                }
+                let json = try NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                guard let items: [AnyObject] =  (json["items"] as! [AnyObject]) else {
+                    throw APIError.ResponseError
+                }
+                for item in items {
+                    guard let name:String = item["name"] as? String else {
+                        throw APIError.ResponseError
+                    }
+                    guard let notes:String = item["notes"] as? String else {
+                        throw APIError.ResponseError
+                    }
+                    guard let date = item["date"] as? String else {
+                        throw APIError.ResponseError
+                    }
+                    guard let start = item["timeStart"] as? String else {
+                        throw APIError.ResponseError
+                    }
+                    guard let end = item["timeStop"] as? String else {
+                        throw APIError.ResponseError
+                    }
+                    guard let recurring = item["recurringWeekly"] as? String else {
+                        throw APIError.ResponseError
+                    }
+                    var booking = Booking()
+                    booking.participants.append(name)
+                    booking.notes = notes
+                    booking.date = date
+                    booking.start = start
+                    booking.end = end
+                    booking.recurringWeekly = recurring.toBool()!
+                    results.append(booking)
+                }
+            } catch {
+                print("Error")
+            }
+            completion(results)
+        }).resume()
+    }
+    
     class func createAppointment(booking: Booking) throws {
         
         let dictionary:NSDictionary = [
@@ -595,5 +658,6 @@ class APICall {
             }
         }).resume()
     }
+    
     
 }
