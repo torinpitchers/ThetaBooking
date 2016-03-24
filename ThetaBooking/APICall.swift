@@ -414,6 +414,46 @@ class APICall {
         }).resume()
     }
     
+    class func getUserByName(name: String, completion: ([User]) -> ()) throws {
+        var userResults:[User] = [User]()
+        guard let nameString:String = name else {
+            throw APIError.DictionaryError
+        }
+        
+        let url:NSURL = NSURL(string: "http//cortexapi/ddns.net:8080/api/getUserByName/\(nameString)")!
+        let request: NSMutableURLRequest = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let session:NSURLSession = NSURLSession.sharedSession()
+        session.dataTaskWithRequest(request, completionHandler: {(data, response, error) -> Void in
+            do {
+                let json = try  NSJSONSerialization.JSONObjectWithData(data!, options: [])
+                let data: AnyObject = json["data"] as AnyObject!
+                guard let nameFromResponse:String = data["name"] as? String else {
+                    throw APIError.ResponseError
+                }
+                guard let email: String = data["email"] as? String else {
+                    throw APIError.ResponseError
+                }
+                guard let username: String = data["username"] as? String else {
+                    throw APIError.ResponseError
+                }
+                guard let skills: [String] = data["skills"] as? [String] else {
+                    throw APIError.ResponseError
+                }
+                guard let lecturerString: String = data["lecturer"] as? String else {
+                    throw APIError.ResponseError
+                }
+                let lecturer = lecturerString.toBool()
+                let newUser = User(name: nameFromResponse, email: email, staff: lecturer!, skills: skills, bio: "", picture: NSData())
+                userResults.append(newUser)
+            } catch {
+                print("Error")
+            }
+            completion(userResults)
+        }).resume()
+    }
+    
     class func createAppointment(booking: Booking) throws {
         
         let dictionary:NSDictionary = [

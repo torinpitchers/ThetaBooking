@@ -19,7 +19,7 @@
 		34A1B82B1C6B8F1C00081C0B /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A1B82A1C6B8F1C00081C0B /* HomeScreen.swift */; };
 		8F0D504F1C7CA211006163AF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D504E1C7CA211006163AF /* User.swift */; };
 		8F315CC61C7DF86200733B3D /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F315CC51C7DF86200733B3D /* APICall.swift */; };
-		8F315CC81C7DF88600733B3D /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F315CC71C7DF88600733B3D /* Date.swift */; };
+		8F315CC81C7DF88600733B3D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F315CC71C7DF88600733B3D /* Extensions.swift */; };
 		8F315CCA1C7DF8A700733B3D /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F315CC91C7DF8A700733B3D /* Booking.swift */; };
 		8F315CCC1C7DF9DD00733B3D /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F315CCB1C7DF9DD00733B3D /* ProfileController.swift */; };
 		8F315CCE1C7DFA8F00733B3D /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F315CCD1C7DFA8F00733B3D /* LocalAuthentication.framework */; };
@@ -65,7 +65,7 @@
 		34A1B82A1C6B8F1C00081C0B /* HomeScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		8F0D504E1C7CA211006163AF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8F315CC51C7DF86200733B3D /* APICall.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
-		8F315CC71C7DF88600733B3D /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		8F315CC71C7DF88600733B3D /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		8F315CC91C7DF8A700733B3D /* Booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		8F315CCB1C7DF9DD00733B3D /* ProfileController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		8F315CCD1C7DFA8F00733B3D /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
@@ -142,7 +142,7 @@
 				11D7D2801C4D35000065E502 /* ThetaBooking.xcdatamodeld */,
 				118312971C9C059E001CA151 /* Availability.swift */,
 				8F315CC51C7DF86200733B3D /* APICall.swift */,
-				8F315CC71C7DF88600733B3D /* Date.swift */,
+				8F315CC71C7DF88600733B3D /* Extensions.swift */,
 				8F315CC91C7DF8A700733B3D /* Booking.swift */,
 				8F315CCB1C7DF9DD00733B3D /* ProfileController.swift */,
 				8F315CD11C7DFABC00733B3D /* RegisterVC.swift */,
@@ -302,7 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				118312981C9C059E001CA151 /* Availability.swift in Sources */,
-				8F315CC81C7DF88600733B3D /* Date.swift in Sources */,
+				8F315CC81C7DF88600733B3D /* Extensions.swift in Sources */,
 				8FE607211C7BA1AF0015666B /* SearchViewController.swift in Sources */,
 				8F315CC61C7DF86200733B3D /* APICall.swift in Sources */,
 				11D7D2821C4D35000065E502 /* ThetaBooking.xcdatamodeld in Sources */,
