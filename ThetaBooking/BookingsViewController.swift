@@ -66,16 +66,15 @@ class BookingsViewController: UITableViewController {
         if let label = cell.Location{
             
             label.text = objectArray[indexPath.section].sectionObject[indexPath.row].Location
-            label.hidden = true
+           
             
         }
         if let label = cell.fullDate{
             label.text = objectArray[indexPath.section].sectionObject[indexPath.row].fullDate
-            label.hidden = true
+            
         }
         if let label = cell.notesLabel{
             label.text = objectArray[indexPath.section].sectionObject[indexPath.row].Note
-            label.hidden = true
         }
 
 
